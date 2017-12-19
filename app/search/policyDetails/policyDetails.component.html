@@ -1,0 +1,80 @@
+<ActionBar class="action-bar">
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="onBackButtonTap()">
+    </NavigationButton>
+    <!--<NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>-->
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the NavigationButton as a side-drawer button in iOS is not possible, because its function is to always navigate back in the application.
+    -->
+    <!--    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+            ios.position="left">
+        </ActionItem>-->
+    <Label class="action-bar-title" text="Policy Details"></Label>
+</ActionBar>
+
+<!--
+RadSideDrawer is a UI component part of the Progress NativeScript UI set of components.
+Learn more about the RadSideDrawer UI component and how it can be customized in this documentation article:
+http://docs.telerik.com/devtools/nativescript-ui/Controls/Angular/SideDrawer/getting-started
+The RadSideDrawer component is designed to be used as a root element and
+it shouldn't have any other siblings other than the <ActionBar> component.
+-->
+<RadSideDrawer #drawer showOverNavigation="true" [drawerTransition]="sideDrawerTransition">
+    <!--
+    Use the tkMainContent directive to display the content of the page when you have an app drawer.
+    -->
+    <StackLayout tkMainContent>
+        <ScrollView orientation="horizontal" height="7%" verticalAlignment="top">
+        <SegmentedBar [items]="items" (selectedIndexChange)="onSelectedIndexChange($event)"  selectedIndex="0"  class="sgstyle fa m-5"></SegmentedBar>
+        </ScrollView>
+        <GridLayout visibility="{{ visibility1 ? 'visible' : 'collapsed' }}" class="list-group-item-content">
+            <ListView  [items]="policyInfo" class="list-group">
+                <ng-template let-policy="item">
+
+                    <GridLayout class="fa list-group-item-content" rows="*,*,*,*,*,*,*,*,*,*,*" columns="*,*">
+                        <Label text="Client Name:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
+                        <Label [text]="policy.clientName" row="1" col="1" textWrap="true" class="text-primary font-weight-bold"></Label>
+
+                        <Label text="Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
+                        <Label [text]="policy.company" row="2" col="1" textWrap="true"
+                               editable="false" class="text-primary font-weight-bold" textWrap="true"></Label>
+
+                        <Label text="Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
+                        <Label [text]="policy.phoneNumber" row="3" col="1" class="text p-b-10"></Label>
+
+                        <Label text="2nd Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
+                        <Label [text]="policy.secondaryPhoneNumber" row="4" col="1" class="text p-b-10"></Label>
+
+                        <Label text="Date Of Birth:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
+                        <Label [text]="policy.dob" row="5" col="1" class="text p-b-10"></Label>
+
+                        <Label text="Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
+                        <Label [text]="policy.email" row="6" col="1" class="text p-b-10"></Label>
+
+                        <Label text="2nd Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
+                        <Label [text]="policy.secondaryEmail" row="7" col="1" class="text p-b-10"></Label>
+
+                        <Label text="Gender:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
+                        <Label [text]="policy.gender" row="8" col="1" class="text p-b-10"></Label>
+
+                        <Label text="Industry:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
+                        <Label [text]="policy.industry" row="9" col="1" class="text p-b-10"></Label>
+              </GridLayout>
+
+                </ng-template>
+            </ListView>
+        </GridLayout>
+
+        <GridLayout rows="*" visibility="{{ visibility2 ? 'visible' : 'collapsed' }}" backgroundColor="green">
+            <Label [text]="'The new selectedIndex is: ' + selectedIndex" class="m-15 h3 p-5 text-center"
+                   color="white"></Label>
+        </GridLayout>
+
+        <GridLayout rows="*" visibility="{{ visibility3 ? 'visible' : 'collapsed' }}" backgroundColor="red">
+            <Label [text]="'The new selectedIndex is: ' + selectedIndex" class="m-15 h3 p-5 text-center"
+                   color="white"></Label>
+        </GridLayout>
+    </StackLayout>
+</RadSideDrawer>

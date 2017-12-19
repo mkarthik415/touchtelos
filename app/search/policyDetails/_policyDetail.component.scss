@@ -1,0 +1,25 @@
+@import '../../app-variables';
+// Custom styles
+.list-group {
+  separator-color: transparent;
+  .list-group-item {
+    padding: 0 0 8 0;
+    background-color: $blue-10;
+    separator-color: transparent;
+
+    .list-group-item-content {
+      padding: 8 15 4 15;
+      background-color: $background-light;
+      border-width: 0 0 0 0;
+      separator-color: transparent;
+    }
+
+    .fa {
+      color: $accent-dark;
+    }
+  }
+}
+
+.sgstyle{
+  selected-background-color:$accent-dark;
+}

@@ -1,0 +1,33 @@
+<ActionBar class="action-bar">
+    <!--
+    Use the NavigationButton as a side-drawer button in Android because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!--
+    Use the ActionItem for IOS with position set to left. Using the NavigationButton as a side-drawer button in iOS is not possible, because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+                ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Dashboard"></Label>
+</ActionBar>
+
+<RadSideDrawer #drawer showOverNavigation="true" [drawerTransition]="sideDrawerTransition">
+    <!--
+    Use the tkDrawerContent directive to display the content of the app drawer on this page.
+    -->
+    <StackLayout tkDrawerContent>
+        <MyDrawer [selectedPage]="'Dashboard'"></MyDrawer>
+    </StackLayout>
+
+    <stack-layout tkMainContent>
+        <CardView class="cardStyle" margin="20" elevation="40" radius="5">
+            <GridLayout rows="200, auto, auto" columns="*, auto, *">
+                <Image [src]="'res://dashboard/batman'" stretch="aspectFit" colSpan="3" col="0" row="0"></Image>
+                <Label class="info" [text]="item.Summary" textWrap="true" row="1" colSpan="3"></Label>
+                <button text="DECLINE" row="2" col="0"></button>
+                <button text="ACCEPT" row="2" col="2"></button>
+            </GridLayout>
+        </CardView>
+    </stack-layout>
+</RadSideDrawer>

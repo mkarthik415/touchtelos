@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 2/nativescript-cardview/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 2/nativescript-plugin-firebase/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 2/nativescript-pro-ui/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 2/nativescript-snackbar/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 2/nativescript-theme-core/scss/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 2/tns-core-modules-widgets/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/platforms 2/ios/build/emulator/touchtelos.app/app/tns_modules/nativescript-theme-core/scss/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/platforms 2/ios/touchtelos/app/tns_modules/nativescript-theme-core/scss/platforms" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="tsconfig$roots" level="project" />
+  </component>
+</module>
