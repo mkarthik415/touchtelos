@@ -14,7 +14,7 @@ export class MyHttpGetService {
         let headers = this.createRequestHeader();
         console.log("webservice endpoint"+this.serverUrl+endpoint);
         return this.http.get(this.serverUrl+endpoint)
-            .map(res => res.json());
+            .map(res => res.text().length >0 ? res.json() : res.text());
     }
 
     getResponseInfo() {

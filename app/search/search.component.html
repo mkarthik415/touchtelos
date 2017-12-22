@@ -27,7 +27,7 @@
                           class="sgstyle fa m-5"></SegmentedBar>
         </ScrollView>
 
-        <SearchBar [hint]="searchHint" [(ngModel)]='searchPhrase'
+        <SearchBar [hint]="searchHint" [text]='searchPhrase'
                    (submit)="extractData($event)"
                    color="black" textFieldBackgroundColor="white" textFieldHintColor="blue"
                    [keyboardType]="searchKeyboardType" (clear)="onClear($event)"></SearchBar>
@@ -38,7 +38,7 @@
         </GridLayout>
 
 
-        <GridLayout visibility="{{ labelVisibility ? 'visible' : 'collapsed' }}" backgroundColor="white">
+        <GridLayout visibility="{{ labelVisibility ? 'visible' : 'collapsed' }}" backgroundColor="white" className="page page-content">
             <Label class="text-primary font-weight-bold" [text]="resultInfo" textwrap="true"></Label>
         </GridLayout>
 

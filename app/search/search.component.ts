@@ -35,7 +35,7 @@ export class SearchComponent implements OnInit {
     public myItemss: Array<SegmentedBarItem>;
     public barItemTitles: Array<string>;
     public resultInfo: string;
-    public labelVisibility :boolean;
+    public labelVisibility: boolean;
     public searchPhrase: string;
     public activityIndicator: boolean;
     private response: boolean;
@@ -52,14 +52,14 @@ export class SearchComponent implements OnInit {
 
     public constructor(private myService: MyHttpGetService,
                        private _routerExtensions: RouterExtensions) {
-        this.resultInfo= " Select search criteria and input values in search field.";
+        this.resultInfo = " Select search criteria and input values in search field.";
         this.labelVisibility = true;
-        this.barItemTitles = ["Serial #","Name","Vehicle #","Policy Issue Date","Policy #","Telephone #","Email Address"];
+        this.barItemTitles = ["Serial #", "Name", "Vehicle #", "Policy Issue Date", "Policy #", "Telephone #", "Email Address"];
         this.myItemss = [];
-        for (var i of this.barItemTitles ) {
+        for (var i of this.barItemTitles) {
             const item = new SegmentedBarItem();
-                item.title = i;
-                this.myItemss.push(item);
+            item.title = i;
+            this.myItemss.push(item);
         }
     }
 
@@ -77,15 +77,14 @@ export class SearchComponent implements OnInit {
 
     private onGetDataSuccess(res) {
         this.myItems = res;
-        console.log("the size of the array is: " + this.myItems.length );
+        console.log("the size of the array is: " + this.myItems.length);
         this.activityIndicator = false;
-        if(this.myItems)
-        {
+        if (this.myItems) {
             this.labelVisibility = false;
         }
         else {
             this.labelVisibility = true;
-            this.resultInfo =" No Data found for selected search criteria";
+            this.resultInfo = " No Data found for selected search criteria";
         }
         this.host = res.headers.Host;
         this.userAgent = res.headers["User-Agent"];
@@ -102,7 +101,7 @@ export class SearchComponent implements OnInit {
         const err = body.error || JSON.stringify(body);
         this.activityIndicator = false;
         this.labelVisibility = true;
-        this.resultInfo =" No Data found for selected search criteria";
+        this.resultInfo = " No Data found for selected search criteria";
         console.log("onGetDataError: " + err);
     }
 
@@ -111,17 +110,19 @@ export class SearchComponent implements OnInit {
         let searchBar = <SearchBar>args.object;
         this.myService.getData((this.searchEndPt + "?" + webServices[this.searchEndPt] + "=" + searchBar.text))
             .subscribe((result) => {
-                this.response= true;
-                console.log("result from webservices: " + result);
-                this.onGetDataSuccess(result);
+                this.activityIndicator = false;
+                if (result) {
+
+                    console.log("result from webservices: " + result);
+                    this.onGetDataSuccess(result);
+                }
+                else {
+                    this.labelVisibility = true;
+                    this.resultInfo = " No Data found for selected search criteria";
+                }
             }, (error) => {
                 this.onGetDataError(error);
             });
-        if(!this.response){
-            this.activityIndicator = false;
-            this.labelVisibility = true;
-            this.resultInfo =" No Data found for selected search criteria";
-        }
     }
 
     public onSelectedIndexChange(args) {
