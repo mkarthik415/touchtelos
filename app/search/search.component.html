@@ -27,9 +27,16 @@
                           class="sgstyle fa m-5"></SegmentedBar>
         </ScrollView>
 
-        <SearchBar [hint]="searchHint" [text]="searchPhrase"
+        <SearchBar [hint]="searchHint" [(ngModel)]='searchPhrase'
                    (submit)="extractData($event)"
-                   color="black" textFieldBackgroundColor="white" textFieldHintColor="blue" [keyboardType]="searchKeyboardType"></SearchBar>
+                   color="black" textFieldBackgroundColor="white" textFieldHintColor="blue"
+                   [keyboardType]="searchKeyboardType" (clear)="onClear($event)"></SearchBar>
+
+        <GridLayout visibility="{{ activityIndicator ? 'visible' : 'collapsed' }}" backgroundColor="white">
+        <ActivityIndicator row="1" [busy]="activityIndicator" width="100"
+                           height="100" class="activity-indicator"></ActivityIndicator>
+        </GridLayout>
+
 
         <GridLayout visibility="{{ labelVisibility ? 'visible' : 'collapsed' }}" backgroundColor="white">
             <Label class="text-primary font-weight-bold" [text]="resultInfo" textwrap="true"></Label>
@@ -57,8 +64,21 @@
                             <StackLayout row="1" class="hr-light m-t-5 m-b-5" colSpan="2"></StackLayout>
 
                             <Image row="2"
-                                   src="https://firebasestorage.googleapis.com/v0/b/car-rental-b26b7.appspot.com/o/cars_public%2FBMW%205%20Series.jpg?alt=media&token=dec5a0bf-e3ca-45d2-8f2e-c7b8a25530b5"
-                                   stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120"></Image>
+                                   [src]="'res://search/Miscellaneous'"
+                                   stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120"
+                                   visibility="{{ item.department == 'Miscellaneous' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2"
+                                   [src]="'res://search/Engineering'"
+                                   stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120"
+                                   visibility="{{ item.department == 'Engineering' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2"
+                                   [src]="'res://search/Marine'"
+                                   stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120"
+                                   visibility="{{ item.department == 'Marine' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2"
+                                   [src]="'res://search/Motor'"
+                                   stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120"
+                                   visibility="{{ item.department == 'Motor' ? 'visible' : 'hidden' }}"></Image>
                             <StackLayout row="2" col="1" verticalAlignment="center" class="list-group-item-text">
                                 <Label class="p-b-10">
                                     <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->

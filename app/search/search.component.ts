@@ -29,7 +29,6 @@ export class SearchComponent implements OnInit {
     public origin: string;
     public url: string;
     public myItems: Array<any>;
-    public searchBy: any;
     public searchEndPt: any;
     public searchHint: string;
     public searchKeyboardType: any;
@@ -37,13 +36,17 @@ export class SearchComponent implements OnInit {
     public barItemTitles: Array<string>;
     public resultInfo: string;
     public labelVisibility :boolean;
-
+    public searchPhrase: string;
+    public activityIndicator: boolean;
+    private response: boolean;
 
     /* ***********************************************************
     * Use the sideDrawerTransition property to change the open/close animation of the drawer.
     *************************************************************/
     ngOnInit(): void {
         this._sideDrawerTransition = new SlideInOnTopTransition();
+        this.activityIndicator = false;
+        this.response = false;
     }
 
 
@@ -75,6 +78,7 @@ export class SearchComponent implements OnInit {
     private onGetDataSuccess(res) {
         this.myItems = res;
         console.log("the size of the array is: " + this.myItems.length );
+        this.activityIndicator = false;
         if(this.myItems)
         {
             this.labelVisibility = false;
@@ -87,31 +91,46 @@ export class SearchComponent implements OnInit {
         this.userAgent = res.headers["User-Agent"];
         this.origin = res.origin;
         this.url = res.url;
+        for (let myItem in this.myItems) {
+            console.log(myItem);
+        }
+
     }
 
     private onGetDataError(error: Response | any) {
         const body = error.json() || "";
         const err = body.error || JSON.stringify(body);
+        this.activityIndicator = false;
         this.labelVisibility = true;
         this.resultInfo =" No Data found for selected search criteria";
         console.log("onGetDataError: " + err);
     }
 
     extractData(args) {
+        this.activityIndicator = true;
         let searchBar = <SearchBar>args.object;
         this.myService.getData((this.searchEndPt + "?" + webServices[this.searchEndPt] + "=" + searchBar.text))
             .subscribe((result) => {
+                this.response= true;
+                console.log("result from webservices: " + result);
                 this.onGetDataSuccess(result);
             }, (error) => {
                 this.onGetDataError(error);
             });
+        if(!this.response){
+            this.activityIndicator = false;
+            this.labelVisibility = true;
+            this.resultInfo =" No Data found for selected search criteria";
+        }
     }
 
     public onSelectedIndexChange(args) {
         let segmetedBar = <SegmentedBar>args.object;
         this.searchHint = "Search By " + segmetedBar.items[segmetedBar.selectedIndex].title;
         this.searchEndPt = description[segmetedBar.items[segmetedBar.selectedIndex].title];
-        this.searchKeyboardType = searchKeyboardType[segmetedBar.items[segmetedBar.selectedIndex].title]
+        this.searchKeyboardType = searchKeyboardType[segmetedBar.items[segmetedBar.selectedIndex].title];
+        this.searchPhrase = "";
+
     }
 
     onPolicytemTap(args) {
@@ -127,6 +146,12 @@ export class SearchComponent implements OnInit {
                     curve: "ease"
                 }
             });
+    }
+
+
+    public onClear(args) {
+        let searchBar = <SearchBar>args.object;
+        searchBar.text = "";
     }
 
 }
