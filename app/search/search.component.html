@@ -6,8 +6,7 @@
     <!--
     Use the ActionItem for IOS with position set to left. Using the NavigationButton as a side-drawer button in iOS is not possible, because its function is to always navigate back in the application.
     -->
-    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
-                ios.position="left">
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
     </ActionItem>
     <Label class="action-bar-title" text="Search"></Label>
 </ActionBar>
@@ -23,26 +22,23 @@
 
     <StackLayout tkMainContent>
         <ScrollView orientation="horizontal" height="7%" verticalAlignment="top">
-            <SegmentedBar [items]="myItemss" selectedIndex="0" (selectedIndexChange)="onSelectedIndexChange($event)"
-                          class="sgstyle fa m-5"></SegmentedBar>
+            <SegmentedBar [items]="myItemss" selectedIndex="0" (selectedIndexChange)="onSelectedIndexChange($event)" class="sgstyle fa m-5"></SegmentedBar>
         </ScrollView>
 
-        <SearchBar [hint]="searchHint" [text]='searchPhrase'
-                   (submit)="extractData($event)"
-                   color="black" textFieldBackgroundColor="white" textFieldHintColor="blue"
-                   [keyboardType]="searchKeyboardType" (clear)="onClear($event)"></SearchBar>
+        <SearchBar [hint]="searchHint" (text)='searchPhrase' (submit)="extractData($event)" color="black" textFieldBackgroundColor="white"
+            textFieldHintColor="blue" [keyboardType]="searchKeyboardType" (clear)="onClear($event)"></SearchBar>
 
         <GridLayout visibility="{{ activityIndicator ? 'visible' : 'collapsed' }}" backgroundColor="white">
-        <ActivityIndicator row="1" [busy]="activityIndicator" width="100"
-                           height="100" class="activity-indicator"></ActivityIndicator>
+            <ActivityIndicator row="1" [busy]="activityIndicator" width="100" height="100" class="activity-indicator"></ActivityIndicator>
         </GridLayout>
 
 
-        <GridLayout visibility="{{ labelVisibility ? 'visible' : 'collapsed' }}" backgroundColor="white" className="page page-content">
-            <Label class="text-primary font-weight-bold" [text]="resultInfo" textwrap="true"></Label>
+        <GridLayout visibility="{{ labelVisibility ? 'visible' : 'collapsed' }}" backgroundColor="white" className="page page-content"
+            rows="auto" columns="*">
+            <Label class="text-primary font-weight-bold p-l-15 p-y-15 p-b-10 m-r-20" [text]="resultInfo" textwrap="true"></Label>
         </GridLayout>
 
-        <GridLayout class="page page-content">
+        <GridLayout class="page page-content" >
             <RadListView [items]="myItems" class="list-group" (itemTap)="onPolicytemTap($event)">
                 <!--
                 RadListView is a UI component part of the Progress NativeScript UI set of components.
@@ -62,29 +58,17 @@
                             </Label>
 
                             <StackLayout row="1" class="hr-light m-t-5 m-b-5" colSpan="2"></StackLayout>
-
-                            <Image row="2"
-                                   [src]="'res://search/Miscellaneous'"
-                                   stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120"
-                                   visibility="{{ item.department == 'Miscellaneous' ? 'visible' : 'hidden' }}"></Image>
-                            <Image row="2"
-                                   [src]="'res://search/Engineering'"
-                                   stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120"
-                                   visibility="{{ item.department == 'Engineering' ? 'visible' : 'hidden' }}"></Image>
-                            <Image row="2"
-                                   [src]="'res://search/Marine'"
-                                   stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120"
-                                   visibility="{{ item.department == 'Marine' ? 'visible' : 'hidden' }}"></Image>
-                            <Image row="2"
-                                   [src]="'res://search/Motor'"
-                                   stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120"
-                                   visibility="{{ item.department == 'Motor' ? 'visible' : 'hidden' }}"></Image>
+ 
+                            <Image row="2" [src]="'res://search/Miscellaneous'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item.department == 'Miscellaneous' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2" [src]="'res://search/Engineering'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item.department == 'Engineering' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2" [src]="'res://search/Marine'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item.department == 'Marine' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2" [src]="'res://search/Motor'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item.department == 'Motor' ? 'visible' : 'hidden' }}"></Image>
                             <StackLayout row="2" col="1" verticalAlignment="center" class="list-group-item-text">
                                 <Label class="p-b-10">
                                     <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
                                     <FormattedString ios:fontFamily="system">
-                                        <Span text="&#xf1b9;   " class="fa text-primary"></Span>
-                                        <Span [text]="item.department"></Span>
+                                        <Span text="&#xf27e;   " class="fa text-primary"></Span>
+                                        <Span [text]="item.agent"></Span>
                                     </FormattedString>
                                 </Label>
                                 <Label class="p-b-10">
@@ -97,7 +81,7 @@
                                 <Label>
                                     <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
                                     <FormattedString ios:fontFamily="system">
-                                        <Span text="&#xf2dc;   " class="fa text-primary"></Span>
+                                        <Span text="{{ item.industry == 'Individual' ? '&#xf2bd;   ': '&#xf1ad;   ' }}" class="fa text-primary"></Span>
                                         <Span [text]="item.industry"></Span>
                                     </FormattedString>
                                 </Label>

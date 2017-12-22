@@ -8,6 +8,7 @@ import {SegmentedBar, SegmentedBarItem} from "ui/segmented-bar";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
 import "rxjs/add/operator/switchMap";
+import { toArray } from '../../platforms/ios/build/emulator/touchtelos.app/app/tns_modules/rxjs/src/operator/toArray';
 
 @Component({
     selector: "Search",
@@ -39,6 +40,7 @@ export class SearchComponent implements OnInit {
     public searchPhrase: string;
     public activityIndicator: boolean;
     private response: boolean;
+    private industry: string;
 
     /* ***********************************************************
     * Use the sideDrawerTransition property to change the open/close animation of the drawer.
@@ -52,7 +54,7 @@ export class SearchComponent implements OnInit {
 
     public constructor(private myService: MyHttpGetService,
                        private _routerExtensions: RouterExtensions) {
-        this.resultInfo = " Select search criteria and input values in search field.";
+        this.resultInfo = " Select search criteria .....";
         this.labelVisibility = true;
         this.barItemTitles = ["Serial #", "Name", "Vehicle #", "Policy Issue Date", "Policy #", "Telephone #", "Email Address"];
         this.myItemss = [];
@@ -84,7 +86,7 @@ export class SearchComponent implements OnInit {
         }
         else {
             this.labelVisibility = true;
-            this.resultInfo = " No Data found for selected search criteria";
+            this.resultInfo = " No Data found.";
         }
         this.host = res.headers.Host;
         this.userAgent = res.headers["User-Agent"];
@@ -101,7 +103,7 @@ export class SearchComponent implements OnInit {
         const err = body.error || JSON.stringify(body);
         this.activityIndicator = false;
         this.labelVisibility = true;
-        this.resultInfo = " No Data found for selected search criteria";
+        this.resultInfo = " No Data found.";
         console.log("onGetDataError: " + err);
     }
 
@@ -112,13 +114,12 @@ export class SearchComponent implements OnInit {
             .subscribe((result) => {
                 this.activityIndicator = false;
                 if (result) {
-
-                    console.log("result from webservices: " + result);
                     this.onGetDataSuccess(result);
                 }
                 else {
                     this.labelVisibility = true;
-                    this.resultInfo = " No Data found for selected search criteria";
+                    this.resultInfo = " No Data found.";
+                    this.myItems = null;
                 }
             }, (error) => {
                 this.onGetDataError(error);
