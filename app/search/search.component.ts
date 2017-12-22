@@ -152,7 +152,7 @@ export class SearchComponent implements OnInit {
 
     public onClear(args) {
         let searchBar = <SearchBar>args.object;
-        searchBar.text = "";
+        this.searchPhrase = "";
     }
 
 }
