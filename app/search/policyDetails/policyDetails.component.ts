@@ -25,14 +25,7 @@ export class PolicyDetailsComponent implements OnInit {
     public policyInfo: Array<any>;
     public items: Array<SegmentedBarItem>;
     public selectedIndex = 0;
-    public visibility;
-    public visibility1 = true;
-    public visibility2 = false;
-    public visibility3 = false;
-    public visibility4 = false;
-    public visibility5 = false;
-    public visibility6 = false;
-    public visibilityArray : Array<string>;
+    public visibility: string;
     public barItemTitles: Array<string>;
 
     /* ***********************************************************
@@ -57,15 +50,14 @@ export class PolicyDetailsComponent implements OnInit {
     public constructor(private _pageRoute: PageRoute,
                        private myService: MyHttpGetService) {
         this.items = [];
-        // this.visibilityArray = [this.visibility1,this.visibility2,this.visibility3,this.visibility4,this.visibility5,this.visibility6];
         this.barItemTitles = ["Personal Details","Ins Company Details","Policy Details","Amount Details","Documents","Renewal Details"];
-        for (var i of this.barItemTitles ) {
+        this.selectedIndex = 0;
+        this.visibility = "Personal Details";
+        for (var i of this.barItemTitles) {
             const item = new SegmentedBarItem();
             item.title = i;
             this.items.push(item);
         }
-        this.selectedIndex = 0;
-        this.visibility1 = true;
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
@@ -94,18 +86,6 @@ export class PolicyDetailsComponent implements OnInit {
     public onSelectedIndexChange(args) {
         let segmetedBar = <SegmentedBar>args.object;
         this.selectedIndex = segmetedBar.selectedIndex;
-        for(var i in this.visibilityArray)
-        {
-            console.log("selected segment is : " +this.selectedIndex);
-            if(i == this.selectedIndex.toString())
-            {
-                console.log("Assigned value is : " +this.visibility+i.toString);
-                this.visibility+i.toString;
-            }
-            else
-            {
-                this.visibilityArray[i] = "false";
-            }
-        }
+        this.visibility = segmetedBar.items[segmetedBar.selectedIndex].title;
     }
 }
