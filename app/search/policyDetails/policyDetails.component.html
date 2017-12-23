@@ -2,7 +2,7 @@
     <!-- 
     Use the NavigationButton as a side-drawer button in Android because ActionItems are shown on the right side of the ActionBar
     -->
-    <NavigationButton android.systemIcon="ic_menu_back" (tap)="onBackButtonTap()">
+    <NavigationButton android.systemIcon="ic_menu_back">
     </NavigationButton>
     <!--<NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>-->
     <!-- 
@@ -30,45 +30,43 @@ it shouldn't have any other siblings other than the <ActionBar> component.
             <SegmentedBar [items]="items" (selectedIndexChange)="onSelectedIndexChange($event)" selectedIndex="0" class="sgstyle fa m-5"></SegmentedBar>
         </ScrollView>
         <GridLayout [ngSwitch]="visibility">
-            <GridLayout *ngSwitchCase="'Personal Details'" class="list-group-item-content">
-                <ListView [items]="policyInfo" class="list-group">
-                    <ng-template let-policy="item">
+            <ScrollView orientation="vertical" height="100%" backgroundColor="#FFFFFF">
+                <GridLayout *ngSwitchCase="'Personal Details'" rows="*,*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
+                    <Label text="Client Name:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
+                    <Label [text]="policyInfo[0].clientName" row="1" col="1" textwrap="true" class="text-primary textweight m-r-20"></Label>
 
-                        <GridLayout class="fa list-group-item-content" rows="*,*,*,*,*,*,*,*,*,*,*" columns="*,*">
-                            <Label text="Client Name:" class="p-l-15 p-y-30 p-b-10 m-r-20  text-primary" row="1"></Label>
-                            <Label [text]="policy.clientName" row="1" col="1" textWrap="true" class="text-primary textweight p-y-30"></Label>
+                    <Label text="Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
+                    <Label [text]="policyInfo[0].company" row="2" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></Label>
 
-                            <Label text="Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                            <Label [text]="policy.company" row="2" col="1" textWrap="true" editable="false" class="text-primary textweight p-y-15" textWrap="true"></Label>
+                    <Label text="Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
+                    <Label [text]="policyInfo[0].phoneNumber" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                            <Label text="Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                            <Label [text]="policy.phoneNumber" row="3" col="1" class="text-primary textweight p-y-15"></Label>
+                    <Label text="2nd Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
+                    <Label [text]="policyInfo[0].secondaryPhoneNumber" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                            <Label text="2nd Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                            <Label [text]="policy.secondaryPhoneNumber" row="4" col="1" class="text-primary textweight p-y-15" textWrap="true"></Label>
+                    <Label text="Date Of Birth:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
+                    <Label [text]="policyInfo[0].dob" row="5" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                            <Label text="Date Of Birth:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                            <Label [text]="policy.dob" row="5" col="1" class="text-primary textweight p-y-15" textWrap="true"></Label>
+                    <Label text="Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
+                    <Label [text]="policyInfo[0].email" row="6" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                            <Label text="Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                            <Label [text]="policy.email" row="6" col="1" class="text-primary textweight p-y-15" textWrap="true"></Label>
+                    <Label text="2nd Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
+                    <Label [text]="policyInfo[0].secondaryEmail" row="7" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                            <Label text="2nd Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                            <Label [text]="policy.secondaryEmail" row="7" col="1" class="text-primary textweight p-y-15" textWrap="true"></Label>
+                    <Label text="Gender:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
+                    <Label [text]="policyInfo[0].gender" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                            <Label text="Gender:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                            <Label [text]="policy.gender" row="8" col="1" class="text-primary textweight p-y-15" textWrap="true"></Label>
+                    <Label text="Industry:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
+                    <Label [text]="policyInfo[0].industry" row="9" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                            <Label text="Industry:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
-                            <Label [text]="policy.industry" row="9" col="1" class="text-primary textweight p-y-15" textWrap="true"></Label>
-                        </GridLayout>
+                    <Label text="Adress:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="10"></Label>
+                    <Label [text]="policyInfo[0].address" row="10" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+                </GridLayout>
+            </ScrollView>
 
-                    </ng-template>
-                </ListView>
-            </GridLayout>
-
-            <GridLayout rows="*" backgroundColor="green" *ngSwitchCase="'Ins Company Details'">
-                <Label [text]="'The new selectedIndex is: ' + selectedIndex" class="m-15 h3 p-5 text-center" color="white"></Label>
+            <GridLayout rows="*" backgroundColor="green" *ngSwitchCase="'Ins Company Details'" columns="auto,*">
+                <Label text="Client Name:" class="p-l-15 p-y-30 p-b-10 m-r-20  text-primary" row="1"></Label>
+                <Label [text]="policyInfo[0].clientName" row="1" col="1" textwrap="true" class="text-primary textweight p-y-30 m-l-20"></Label>
             </GridLayout>
 
             <GridLayout rows="*" backgroundColor="red" *ngSwitchCase="'Policy Details'">

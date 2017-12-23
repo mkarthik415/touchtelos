@@ -8,7 +8,6 @@ import {SegmentedBar, SegmentedBarItem} from "ui/segmented-bar";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
 import "rxjs/add/operator/switchMap";
-import { toArray } from '../../platforms/ios/build/emulator/touchtelos.app/app/tns_modules/rxjs/src/operator/toArray';
 
 @Component({
     selector: "Search",
@@ -78,7 +77,7 @@ export class SearchComponent implements OnInit {
     }
 
     private onGetDataSuccess(res) {
-        this.myItems = res;
+        this.myItems = res.reverse();
         console.log("the size of the array is: " + this.myItems.length);
         this.activityIndicator = false;
         if (this.myItems) {
