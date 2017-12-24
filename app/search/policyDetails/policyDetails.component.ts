@@ -5,6 +5,7 @@ import {PageRoute} from "nativescript-angular";
 import "rxjs/add/operator/switchMap";
 import {MyHttpGetService} from "../../shared/MyHttpGetService";
 import {SegmentedBar, SegmentedBarItem} from "tns-core-modules/ui/segmented-bar";
+import { SetupItemViewArgs } from "nativescript-angular/directives";
 
 @Component({
     selector: "policyDetails",
@@ -27,6 +28,7 @@ export class PolicyDetailsComponent implements OnInit {
     public selectedIndex = 0;
     public visibility: string;
     public barItemTitles: Array<string>;
+    public dataItems: Array<any>;
 
     /* ***********************************************************
     * Use the sideDrawerTransition property to change the open/close animation of the drawer.
@@ -45,6 +47,22 @@ export class PolicyDetailsComponent implements OnInit {
             }, (error) => {
                 this.onGetDataError(error);
             });
+    }
+
+    getDocumentsInfo()
+    {
+        this.myService.getData("documentsById?id"+ "=" + this.mySerialNumber)
+        .subscribe((result) => {
+            this.onGetDocumentsSuccess(result);
+        }, (error) => {
+            this.onGetDataError(error);
+        });
+    }
+
+    onGetDocumentsSuccess(documents)
+    {
+        this.dataItems = documents;
+        console.log("results are "+this.dataItems[0]);
     }
 
     public constructor(private _pageRoute: PageRoute,
@@ -87,5 +105,15 @@ export class PolicyDetailsComponent implements OnInit {
         let segmetedBar = <SegmentedBar>args.object;
         this.selectedIndex = segmetedBar.selectedIndex;
         this.visibility = segmetedBar.items[segmetedBar.selectedIndex].title;
+        if(this.visibility == "Documents")
+        {
+            this.getDocumentsInfo();
+        }
+    }
+
+    onSetupItemView(args: SetupItemViewArgs) {
+        args.view.context.third = (args.index % 3 === 0);
+        args.view.context.header = ((args.index + 1) % this.items.length === 1);
+        args.view.context.footer = (args.index + 1 === this.items.length);
     }
 }

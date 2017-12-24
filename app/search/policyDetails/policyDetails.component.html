@@ -166,7 +166,13 @@ it shouldn't have any other siblings other than the <ActionBar> component.
             </ScrollView>
 
             <GridLayout rows="*" backgroundColor="red" *ngSwitchCase="'Documents'">
-                <Label [text]="'The new selectedIndex is: ' + selectedIndex" class="m-15 h3 p-5 text-center" color="white"></Label>
+                <ListView [items]="dataItems" (setupItemView)="onSetupItemView($event)" class="list-group">
+                    <ng-template let-dataitem="item" let-i="index" let-third="third" let-header="header" let-footer="footer">
+                        <GridLayout [class.third]="third" [class.header]="header" [class.footer]="footer" class="list-group-item">
+                            <Label [text]="dataitem.fileName" android:class="label-item"></Label>
+                        </GridLayout>
+                    </ng-template>
+                </ListView>
             </GridLayout>
 
             <ScrollView orientation="vertical" height="100%">

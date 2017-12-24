@@ -6,7 +6,8 @@ import "rxjs/add/operator/do";
 
 @Injectable()
 export class MyHttpGetService {
-    private serverUrl = "https://connect2telos.com/telosws/";
+      private serverUrl = "https://connect2telos.com/telosws/";
+/*     private serverUrl = "http://localhost:8080/"; */
 
     constructor(private http: Http) { }
 
