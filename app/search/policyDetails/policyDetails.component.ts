@@ -51,7 +51,7 @@ export class PolicyDetailsComponent implements OnInit {
 
     getDocumentsInfo()
     {
-        this.myService.getData("documentsById?id"+ "=" + this.mySerialNumber)
+        this.myService.getData("documentsByClient?id"+ "=" + this.mySerialNumber)
         .subscribe((result) => {
             this.onGetDocumentsSuccess(result);
         }, (error) => {
