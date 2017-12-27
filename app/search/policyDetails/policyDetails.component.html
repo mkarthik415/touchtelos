@@ -27,334 +27,162 @@ it shouldn't have any other siblings other than the <ActionBar> component.
     -->
     <StackLayout tkMainContent>
         <ScrollView orientation="horizontal" height="9%" verticalAlignment="top">
-            <SegmentedBar [items]="items" (selectedIndexChange)="onSelectedIndexChange($event)" selectedIndex="0"
-                          class="sgstyle fa m-5"></SegmentedBar>
+            <SegmentedBar [items]="items" (selectedIndexChange)="onSelectedIndexChange($event)" selectedIndex="0" class="sgstyle fa m-5"></SegmentedBar>
         </ScrollView>
-        <!--       <GridLayout [ngSwitch]="visibility">
-                   <ScrollView height="100%">
-                       <GridLayout *ngSwitchCase="'Personal Details'" rows="*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                           <Label text="Client Name:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                           <Label [text]="policyInfo[0].clientName" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></Label>
-
-                           <Label text="Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
-                           <Label [text]="policyInfo[0].company" row="1" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></Label>
-
-                           <Label text="Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                           <Label [text]="policyInfo[0].phoneNumber" row="2" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="2nd Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                           <Label [text]="policyInfo[0].secondaryPhoneNumber" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Date Of Birth:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                           <Label [text]="policyInfo[0].dob" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                           <Label [text]="policyInfo[0].email" row="5" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="2nd Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                           <Label [text]="policyInfo[0].secondaryEmail" row="6" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Gender:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                           <Label [text]="policyInfo[0].gender" row="7" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Industry:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                           <Label [text]="policyInfo[0].industry" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Adress:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
-                           <Label [text]="policyInfo[0].address" row="9" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-                       </GridLayout>
-                   </ScrollView>
-
-                   <ScrollView height="100%">
-                       <GridLayout *ngSwitchCase="'Ins Company Details'" rows="*,*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                           <Label text="Policy Number:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                           <Label [text]="policyInfo[0].policyNumber" row="1" col="1" textwrap="true" class="text-primary textweight m-r-20"></Label>
-
-                           <Label text="ENDRS Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                           <Label [text]="policyInfo[0].endrsNumber" row="2" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></Label>
-
-                           <Label text="Policy Start Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                           <Label [text]="policyInfo[0].policyStartdate" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Policy End Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                           <Label [text]="policyInfo[0].policyEndDate" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Office Code:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                           <Label [text]="policyInfo[0].officeCode" row="5" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Ins Company Name:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                           <Label [text]="policyInfo[0].insCompanyName" row="6" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Source 1:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                           <Label [text]="policyInfo[0].agent" row="7" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Source 2:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                           <Label [text]="policyInfo[0].source" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Policy Details:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
-                           <Label [text]="policyInfo[0].policyDetails" row="9" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                           <Label text="Ins Branch Name:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="10"></Label>
-                           <Label [text]="policyInfo[0].insBranchName" row="10" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-                       </GridLayout>
-                   </ScrollView>
-
-                   <GridLayout rows="*" backgroundColor="red" *ngSwitchCase="'Policy Details'">
-                       <Label [text]="'The new selectedIndex is: ' + selectedIndex" class="m-15 h3 p-5 text-center" color="white"></Label>
-                   </GridLayout>
-
-                   <ScrollView orientation="vertical" height="100%">
-                       <GridLayout *ngSwitchCase="'Amount Details'" rows="*,*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                           <Label text="premiumAmount:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                           <Label row="1" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                               <FormattedString ios:fontFamily="system">
-                                   <Span text="&#xf156; " class="fa text-primary"></Span>
-                                   <Span [text]="policyInfo[0].premiumAmount"></Span>
-                               </FormattedString>
-                           </Label>
-
-                           <Label text="Terrorism Premium Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                           <Label row="2" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                               <FormattedString ios:fontFamily="system">
-                                   <Span text="&#xf156; " class="fa text-primary"></Span>
-                                   <Span [text]="policyInfo[0].terrorismPremiumAmount"></Span>
-                               </FormattedString>
-                           </Label>
-
-                           <Label text="serviceTax % :" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                           <Label row="3" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                               <FormattedString ios:fontFamily="system">
-                                   <Span [text]="policyInfo[0].serviceTax"></Span>
-                                   <Span text="%" class="fa text-primary"></Span>
-                               </FormattedString>
-                           </Label>
-
-                           <Label text="Service Tax Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                           <Label row="4" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                               <FormattedString ios:fontFamily="system">
-                                   <Span text="&#xf156; " class="fa text-primary"></Span>
-                                   <Span [text]="policyInfo[0].serviceTaxAmount"></Span>
-                               </FormattedString>
-                           </Label>
-
-                           <Label text="Total Premium Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                           <Label row="5" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                               <FormattedString ios:fontFamily="system">
-                                   <Span text="&#xf156; " class="fa text-primary"></Span>
-                                   <Span [text]="policyInfo[0].totalPremiumAmount"></Span>
-                               </FormattedString>
-                           </Label>
-
-                           <Label text="commision Rate:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                           <Label row="6" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                               <FormattedString ios:fontFamily="system">
-                                   <Span [text]="policyInfo[0].commionRate"></Span>
-                                   <Span text="%" class="fa text-primary"></Span>
-                               </FormattedString>
-                           </Label>
-
-                           <Label text="Commision Rate Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                           <Label row="7" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                               <FormattedString ios:fontFamily="system">
-                                   <Span text="&#xf156; " class="fa text-primary"></Span>
-                                   <Span [text]="policyInfo[0].commionRateAmount"></Span>
-                               </FormattedString>
-                           </Label>
-
-                           <Label text="Collection Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                           <Label text="{{policyInfo[0].collectionDate}}" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-                       </GridLayout>
-                   </ScrollView>
-
-                   <GridLayout rows="*" backgroundColor="red" *ngSwitchCase="'Documents'">
-                       <ListView [items]="dataItems" (itemTap)="onItemTap($event)" (setupItemView)="onSetupItemView($event)" class="list-group">
-                           <ng-template let-dataitem="item" let-i="index" let-third="third" let-header="header" let-footer="footer">
-                               <GridLayout [class.third]="third" [class.header]="header" [class.footer]="footer" class="list-group-item">
-                                   <Label [text]="dataitem.fileName" android:class="label-item"></Label>
-                               </GridLayout>
-                           </ng-template>
-                       </ListView>
-                   </GridLayout>
-
-                   <ScrollView orientation="vertical" height="100%">
-                       <GridLayout *ngSwitchCase="'Renewal Details'" rows="*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                           <Label text="Renewal Amount:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                           <Label row="1" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                               <FormattedString ios:fontFamily="system">
-                                   <Span text="&#xf156; " class="fa text-primary"></Span>
-                                   <Span [text]="policyInfo[0].renewalAmount"></Span>
-                               </FormattedString>
-                           </Label>
-
-                           <Label text="Renewal Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                           <Label row="2" col="1" textwrap="true" class="text-primary textweight m-r-20" [text]="policyInfo[0].renewalCompany"></Label>
-                       </GridLayout>
-                   </ScrollView>
-               </GridLayout>-->
         <scroll-view>
-        <GridLayout [ngSwitch]="visibility">
-            <GridLayout *ngSwitchCase="'Personal Details'" rows="*,*,*,*,*,*,*,*,*,*" columns="auto,*"
-                        backgroundColor="#FFFFFF">
-                <Label text="Client Name:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                <Label [text]="policyInfo[0].clientName" row="0" col="1" textwrap="true"
-                       class="text-primary textweight m-r-20"></Label>
+            <GridLayout [ngSwitch]="visibility">
+                <GridLayout *ngSwitchCase="'Personal Details'" rows="*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
+                    <Label text="Client Name:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
+                    <Label [text]="policyInfo[0].clientName" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></Label>
 
-                <Label text="Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
-                <Label [text]="policyInfo[0].company" row="1" col="1" textwrap="true" editable="false"
-                       class="text-primary textweight m-r-20"></Label>
+                    <Label text="Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
+                    <Label [text]="policyInfo[0].company" row="1" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></Label>
 
-                <Label text="Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                <Label [text]="policyInfo[0].phoneNumber" row="2" col="1" class="text-primary textweight m-r-20"
-                       textwrap="true"></Label>
+                    <Label text="Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
+                    <Label [text]="policyInfo[0].phoneNumber" row="2" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                <Label text="2nd Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                <Label [text]="policyInfo[0].secondaryPhoneNumber" row="3" col="1"
-                       class="text-primary textweight m-r-20" textwrap="true"></Label>
+                    <Label text="2nd Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
+                    <Label [text]="policyInfo[0].secondaryPhoneNumber" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                <Label text="Date Of Birth:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                <Label [text]="policyInfo[0].dob" row="4" col="1" class="text-primary textweight m-r-20"
-                       textwrap="true"></Label>
+                    <Label text="Date Of Birth:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
+                    <Label [text]="policyInfo[0].dob" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                <Label text="Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                <Label [text]="policyInfo[0].email" row="5" col="1" class="text-primary textweight m-r-20"
-                       textwrap="true"></Label>
+                    <Label text="Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
+                    <Label [text]="policyInfo[0].email" row="5" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                <Label text="2nd Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                <Label [text]="policyInfo[0].secondaryEmail" row="6" col="1" class="text-primary textweight m-r-20"
-                       textwrap="true"></Label>
+                    <Label text="2nd Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
+                    <Label [text]="policyInfo[0].secondaryEmail" row="6" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                <Label text="Gender:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                <Label [text]="policyInfo[0].gender" row="7" col="1" class="text-primary textweight m-r-20"
-                       textwrap="true"></Label>
+                    <Label text="Gender:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
+                    <Label [text]="policyInfo[0].gender" row="7" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                <Label text="Industry:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                <Label [text]="policyInfo[0].industry" row="8" col="1" class="text-primary textweight m-r-20"
-                       textwrap="true"></Label>
+                    <Label text="Industry:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
+                    <Label [text]="policyInfo[0].industry" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
 
-                <Label text="Adress:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
-                <Label [text]="policyInfo[0].address" row="9" col="1" class="text-primary textweight m-r-20"
-                       textwrap="true"></Label>
+                    <Label text="Adress:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
+                    <Label [text]="policyInfo[0].address" row="9" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+                </GridLayout>
+
+                <GridLayout *ngSwitchCase="'Ins Company Details'" rows="*,*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
+                    <Label text="Policy Number:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
+                    <Label [text]="policyInfo[0].policyNumber" row="1" col="1" textwrap="true" class="text-primary textweight m-r-20"></Label>
+
+                    <Label text="ENDRS Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
+                    <Label [text]="policyInfo[0].endrsNumber" row="2" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></Label>
+
+                    <Label text="Policy Start Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
+                    <Label [text]="policyInfo[0].policyStartdate" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+
+                    <Label text="Policy End Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
+                    <Label [text]="policyInfo[0].policyEndDate" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+
+                    <Label text="Office Code:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
+                    <Label [text]="policyInfo[0].officeCode" row="5" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+
+                    <Label text="Ins Company Name:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
+                    <Label [text]="policyInfo[0].insCompanyName" row="6" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+
+                    <Label text="Source 1:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
+                    <Label [text]="policyInfo[0].agent" row="7" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+
+                    <Label text="Source 2:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
+                    <Label [text]="policyInfo[0].source" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+
+                    <Label text="Policy Details:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
+                    <Label [text]="policyInfo[0].policyDetails" row="9" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+
+                    <Label text="Ins Branch Name:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="10"></Label>
+                    <Label [text]="policyInfo[0].insBranchName" row="10" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+                </GridLayout>
+
+                <GridLayout *ngSwitchCase="'Amount Details'" rows="*,*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
+                    <Label text="premiumAmount:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
+                    <Label row="1" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                        <FormattedString ios:fontFamily="system">
+                            <Span text="&#xf156; " class="fa text-primary"></Span>
+                            <Span [text]="policyInfo[0].premiumAmount"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <Label text="Terrorism Premium Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
+                    <Label row="2" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                        <FormattedString ios:fontFamily="system">
+                            <Span text="&#xf156; " class="fa text-primary"></Span>
+                            <Span [text]="policyInfo[0].terrorismPremiumAmount"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <Label text="serviceTax % :" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
+                    <Label row="3" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                        <FormattedString ios:fontFamily="system">
+                            <Span [text]="policyInfo[0].serviceTax"></Span>
+                            <Span text="%" class="fa text-primary"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <Label text="Service Tax Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
+                    <Label row="4" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                        <FormattedString ios:fontFamily="system">
+                            <Span text="&#xf156; " class="fa text-primary"></Span>
+                            <Span [text]="policyInfo[0].serviceTaxAmount"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <Label text="Total Premium Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
+                    <Label row="5" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                        <FormattedString ios:fontFamily="system">
+                            <Span text="&#xf156; " class="fa text-primary"></Span>
+                            <Span [text]="policyInfo[0].totalPremiumAmount"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <Label text="commision Rate:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
+                    <Label row="6" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                        <FormattedString ios:fontFamily="system">
+                            <Span [text]="policyInfo[0].commionRate"></Span>
+                            <Span text="%" class="fa text-primary"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <Label text="Commision Rate Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
+                    <Label row="7" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                        <FormattedString ios:fontFamily="system">
+                            <Span text="&#xf156; " class="fa text-primary"></Span>
+                            <Span [text]="policyInfo[0].commionRateAmount"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <Label text="Collection Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
+                    <Label text="{{policyInfo[0].collectionDate}}" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+                </GridLayout>
+
+                <FlexboxLayout flexDirection="column">
+                        <PDFView [src]="invoiceLink" ></PDFView>
+                </FlexboxLayout>
+
+                <GridLayout rows="*" *ngSwitchCase="'Documents'">
+                    <ListView [items]="dataItems" (itemTap)="onItemTap($event)" (setupItemView)="onSetupItemView($event)" class="list-group">
+                        <ng-template let-dataitem="item" let-i="index" let-third="third" let-header="header" let-footer="footer">
+                            <GridLayout [class.third]="third" [class.header]="header" [class.footer]="footer" class="list-group-item">
+                                <Label [text]="dataitem.fileName" android:class="label-item"></Label>
+                            </GridLayout>
+                        </ng-template>
+                    </ListView>
+                </GridLayout>
+
+                <GridLayout *ngSwitchCase="'Renewal Details'" rows="*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
+                    <Label text="Renewal Amount:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
+                    <Label row="1" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                        <FormattedString ios:fontFamily="system">
+                            <Span text="&#xf156; " class="fa text-primary"></Span>
+                            <Span [text]="policyInfo[0].renewalAmount"></Span>
+                        </FormattedString>
+                    </Label>
+
+                    <Label text="Renewal Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
+                    <Label row="2" col="1" textwrap="true" class="text-primary textweight m-r-20" [text]="policyInfo[0].renewalCompany"></Label>
+                </GridLayout>
             </GridLayout>
-
-            <GridLayout *ngSwitchCase="'Ins Company Details'" rows="*,*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                <Label text="Policy Number:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                <Label [text]="policyInfo[0].policyNumber" row="1" col="1" textwrap="true" class="text-primary textweight m-r-20"></Label>
-
-                <Label text="ENDRS Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                <Label [text]="policyInfo[0].endrsNumber" row="2" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></Label>
-
-                <Label text="Policy Start Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                <Label [text]="policyInfo[0].policyStartdate" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                <Label text="Policy End Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                <Label [text]="policyInfo[0].policyEndDate" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                <Label text="Office Code:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                <Label [text]="policyInfo[0].officeCode" row="5" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                <Label text="Ins Company Name:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                <Label [text]="policyInfo[0].insCompanyName" row="6" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                <Label text="Source 1:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                <Label [text]="policyInfo[0].agent" row="7" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                <Label text="Source 2:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                <Label [text]="policyInfo[0].source" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                <Label text="Policy Details:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
-                <Label [text]="policyInfo[0].policyDetails" row="9" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-
-                <Label text="Ins Branch Name:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="10"></Label>
-                <Label [text]="policyInfo[0].insBranchName" row="10" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-            </GridLayout>
-
-            <GridLayout *ngSwitchCase="'Amount Details'" rows="*,*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                <Label text="premiumAmount:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                <Label row="1" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                    <FormattedString ios:fontFamily="system">
-                        <Span text="&#xf156; " class="fa text-primary"></Span>
-                        <Span [text]="policyInfo[0].premiumAmount"></Span>
-                    </FormattedString>
-                </Label>
-
-                <Label text="Terrorism Premium Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                <Label row="2" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                    <FormattedString ios:fontFamily="system">
-                        <Span text="&#xf156; " class="fa text-primary"></Span>
-                        <Span [text]="policyInfo[0].terrorismPremiumAmount"></Span>
-                    </FormattedString>
-                </Label>
-
-                <Label text="serviceTax % :" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                <Label row="3" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                    <FormattedString ios:fontFamily="system">
-                        <Span [text]="policyInfo[0].serviceTax"></Span>
-                        <Span text="%" class="fa text-primary"></Span>
-                    </FormattedString>
-                </Label>
-
-                <Label text="Service Tax Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                <Label row="4" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                    <FormattedString ios:fontFamily="system">
-                        <Span text="&#xf156; " class="fa text-primary"></Span>
-                        <Span [text]="policyInfo[0].serviceTaxAmount"></Span>
-                    </FormattedString>
-                </Label>
-
-                <Label text="Total Premium Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                <Label row="5" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                    <FormattedString ios:fontFamily="system">
-                        <Span text="&#xf156; " class="fa text-primary"></Span>
-                        <Span [text]="policyInfo[0].totalPremiumAmount"></Span>
-                    </FormattedString>
-                </Label>
-
-                <Label text="commision Rate:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                <Label row="6" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                    <FormattedString ios:fontFamily="system">
-                        <Span [text]="policyInfo[0].commionRate"></Span>
-                        <Span text="%" class="fa text-primary"></Span>
-                    </FormattedString>
-                </Label>
-
-                <Label text="Commision Rate Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                <Label row="7" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                    <FormattedString ios:fontFamily="system">
-                        <Span text="&#xf156; " class="fa text-primary"></Span>
-                        <Span [text]="policyInfo[0].commionRateAmount"></Span>
-                    </FormattedString>
-                </Label>
-
-                <Label text="Collection Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                <Label text="{{policyInfo[0].collectionDate}}" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
-            </GridLayout>
-
-            <GridLayout rows="*" *ngSwitchCase="'Documents'">
-                <ListView [items]="dataItems" (itemTap)="onItemTap($event)" (setupItemView)="onSetupItemView($event)"
-                          class="list-group">
-                    <ng-template let-dataitem="item" let-i="index" let-third="third" let-header="header"
-                                 let-footer="footer">
-                        <GridLayout [class.third]="third" [class.header]="header" [class.footer]="footer"
-                                    class="list-group-item">
-                            <Label [text]="dataitem.fileName" android:class="label-item"></Label>
-                        </GridLayout>
-                    </ng-template>
-                </ListView>
-            </GridLayout>
-
-            <GridLayout *ngSwitchCase="'Renewal Details'" rows="*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                <Label text="Renewal Amount:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                <Label row="1" col="1" textwrap="true" class="text-primary textweight m-r-20">
-                    <FormattedString ios:fontFamily="system">
-                        <Span text="&#xf156; " class="fa text-primary"></Span>
-                        <Span [text]="policyInfo[0].renewalAmount"></Span>
-                    </FormattedString>
-                </Label>
-
-                <Label text="Renewal Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                <Label row="2" col="1" textwrap="true" class="text-primary textweight m-r-20" [text]="policyInfo[0].renewalCompany"></Label>
-            </GridLayout>
-        </GridLayout>
         </scroll-view>
     </StackLayout>
 </RadSideDrawer>

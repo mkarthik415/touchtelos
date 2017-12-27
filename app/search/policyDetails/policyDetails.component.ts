@@ -29,6 +29,7 @@ export class PolicyDetailsComponent implements OnInit {
     public visibility: string;
     public barItemTitles: Array<string>;
     public dataItems: Array<any>;
+    public invoiceLink: string;
 
     /* ***********************************************************
     * Use the sideDrawerTransition property to change the open/close animation of the drawer.
@@ -47,6 +48,7 @@ export class PolicyDetailsComponent implements OnInit {
             }, (error) => {
                 this.onGetDataError(error);
             });
+            this.invoiceLink = 'https://www.ets.org/Media/Tests/TOEFL/pdf/SampleQuestions.pdf';
     }
 
     getDocumentsInfo()
@@ -76,6 +78,7 @@ export class PolicyDetailsComponent implements OnInit {
             item.title = i;
             this.items.push(item);
         }
+
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
