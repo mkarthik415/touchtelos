@@ -7,7 +7,6 @@ import { SearchComponent } from "./search.component";
 import {NativeScriptUIListViewModule} from "nativescript-pro-ui/listview/angular";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import {PolicyDetailsComponent} from "./policyDetails/policyDetails.component";
-import { ViewDocumentsComponent } from "./policyDetails/viewDocuments/viewDocuments.component";
 
 
 @NgModule({
@@ -21,8 +20,7 @@ import { ViewDocumentsComponent } from "./policyDetails/viewDocuments/viewDocume
     ],
     declarations: [
         SearchComponent,
-        PolicyDetailsComponent,
-        ViewDocumentsComponent
+        PolicyDetailsComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA

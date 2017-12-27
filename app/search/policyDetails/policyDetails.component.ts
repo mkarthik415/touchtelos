@@ -116,4 +116,8 @@ export class PolicyDetailsComponent implements OnInit {
         args.view.context.header = ((args.index + 1) % this.items.length === 1);
         args.view.context.footer = (args.index + 1 === this.items.length);
     }
+
+    public onItemTap(args) {
+        console.log("Item Tapped at cell index: " + args.index);
+    }
 }
