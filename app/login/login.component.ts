@@ -19,7 +19,7 @@ export class LoginComponent{
 
     public login() {
 
-        this.router.navigate(["/dashboard"], { clearHistory: true });
+        this.router.navigate(["/search"], { clearHistory: true });
 
 /*        if(this.password == '12narkar' && this.username == 'Mkarthik415') {
             (new SnackBar()).simple("Login Succesful!");

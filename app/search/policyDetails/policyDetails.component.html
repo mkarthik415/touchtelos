@@ -29,7 +29,7 @@ it shouldn't have any other siblings other than the <ActionBar> component.
         <ScrollView orientation="horizontal" height="9%" verticalAlignment="top">
             <SegmentedBar [items]="items" (selectedIndexChange)="onSelectedIndexChange($event)" selectedIndex="0" class="sgstyle fa m-5"></SegmentedBar>
         </ScrollView>
-        <scroll-view>
+         <scroll-view>
             <GridLayout [ngSwitch]="visibility">
                 <GridLayout *ngSwitchCase="'Personal Details'" rows="*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
                     <Label text="Client Name:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
@@ -156,9 +156,13 @@ it shouldn't have any other siblings other than the <ActionBar> component.
                     <Label text="{{policyInfo[0].collectionDate}}" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
                 </GridLayout>
 
-                <FlexboxLayout flexDirection="column">
-                        <PDFView [src]="invoiceLink" ></PDFView>
-                </FlexboxLayout>
+
+                <GridLayout class="page" *ngSwitchCase="'Policy Details'">
+
+                    <!-- >> listview-create-html -->
+                    <PDFView [src]="invoiceLink"></PDFView>
+                    <!-- << listview-create-html -->
+                </GridLayout>
 
                 <GridLayout rows="*" *ngSwitchCase="'Documents'">
                     <ListView [items]="dataItems" (itemTap)="onItemTap($event)" (setupItemView)="onSetupItemView($event)" class="list-group">
@@ -185,4 +189,8 @@ it shouldn't have any other siblings other than the <ActionBar> component.
             </GridLayout>
         </scroll-view>
     </StackLayout>
+
+
+
+
 </RadSideDrawer>

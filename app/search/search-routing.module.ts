@@ -4,10 +4,12 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 import { SearchComponent } from "./search.component";
 import {PolicyDetailsComponent} from "./policyDetails/policyDetails.component";
+import {ViewDocumentsComponent} from "./viewDocuments/viewDocuments.component";
 
 const routes: Routes = [
     { path: "", component: SearchComponent },
     { path: "policyDetails/:id", component: PolicyDetailsComponent },
+    { path: "viewDocuments/:id", component: ViewDocumentsComponent }
 ];
 
 @NgModule({

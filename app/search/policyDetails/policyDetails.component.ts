@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { DrawerTransitionBase, SlideInOnTopTransition } from "nativescript-pro-ui/sidedrawer";
 import { RadSideDrawerComponent } from "nativescript-pro-ui/sidedrawer/angular";
-import {PageRoute} from "nativescript-angular";
+import {PageRoute, RouterExtensions} from "nativescript-angular";
 import "rxjs/add/operator/switchMap";
 import {MyHttpGetService} from "../../shared/MyHttpGetService";
 import {SegmentedBar, SegmentedBarItem} from "tns-core-modules/ui/segmented-bar";
@@ -51,6 +51,21 @@ export class PolicyDetailsComponent implements OnInit {
             this.invoiceLink = 'https://www.ets.org/Media/Tests/TOEFL/pdf/SampleQuestions.pdf';
     }
 
+    public constructor(private _pageRoute: PageRoute,
+                       private myService: MyHttpGetService,
+                       private _routerExtensions: RouterExtensions) {
+        this.items = [];
+        this.barItemTitles = ["Personal Details","Ins Company Details","Policy Details","Amount Details","Documents","Renewal Details"];
+        this.selectedIndex = 0;
+        this.visibility = "Personal Details";
+        for (var i of this.barItemTitles) {
+            const item = new SegmentedBarItem();
+            item.title = i;
+            this.items.push(item);
+        }
+
+    }
+
     getDocumentsInfo()
     {
         this.myService.getData("documentsByClient?id"+ "=" + this.mySerialNumber)
@@ -65,20 +80,6 @@ export class PolicyDetailsComponent implements OnInit {
     {
         this.dataItems = documents;
         console.log("results are "+this.dataItems[0]);
-    }
-
-    public constructor(private _pageRoute: PageRoute,
-                       private myService: MyHttpGetService) {
-        this.items = [];
-        this.barItemTitles = ["Personal Details","Ins Company Details","Policy Details","Amount Details","Documents","Renewal Details"];
-        this.selectedIndex = 0;
-        this.visibility = "Personal Details";
-        for (var i of this.barItemTitles) {
-            const item = new SegmentedBarItem();
-            item.title = i;
-            this.items.push(item);
-        }
-
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
@@ -122,5 +123,14 @@ export class PolicyDetailsComponent implements OnInit {
 
     public onItemTap(args) {
         console.log("Item Tapped at cell index: " + args.index);
+        this._routerExtensions.navigate(["/search/viewDocuments", "testting"],
+            {
+                animated: true,
+                transition: {
+                    name: "slideTop",
+                    duration: 200,
+                    curve: "ease"
+                }
+            });
     }
 }
