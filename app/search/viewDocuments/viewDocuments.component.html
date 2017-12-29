@@ -13,10 +13,12 @@
 </ActionBar>
 
 <RadSideDrawer #drawer showOverNavigation="true" [drawerTransition]="sideDrawerTransition">
-    <GridLayout class="page" tkMainContent>
+    <StackLayout tkMainContent>
+        <GridLayout class="page">
 
-        <!-- >> listview-create-html -->
-        <PDFView [src]="invoiceLink"></PDFView>
-        <!-- << listview-create-html -->
-    </GridLayout>
+            <!-- >> listview-create-html -->
+            <PDFView [src]="invoiceLink"></PDFView>
+            <!-- << listview-create-html -->
+        </GridLayout>
+    </StackLayout>
 </RadSideDrawer>

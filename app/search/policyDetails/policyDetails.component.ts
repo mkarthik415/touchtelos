@@ -30,17 +30,21 @@ export class PolicyDetailsComponent implements OnInit {
     public barItemTitles: Array<string>;
     public dataItems: Array<any>;
     public invoiceLink: string;
+    public activityIndicator: boolean;
+    public policyType: string;
 
     /* ***********************************************************
     * Use the sideDrawerTransition property to change the open/close animation of the drawer.
     *************************************************************/
     ngOnInit(): void {
         this._sideDrawerTransition = new SlideInOnTopTransition();
+        this.activityIndicator = false;
         this._pageRoute.activatedRoute
             .switchMap((activatedRoute) => activatedRoute.params)
             .forEach((params) => {
                  this.mySerialNumber = params.id;
             });
+            this.activityIndicator = false;
 
         this.myService.getData("bySerialNumber?serialNumber"+ "=" + this.mySerialNumber)
             .subscribe((result) => {
@@ -48,7 +52,6 @@ export class PolicyDetailsComponent implements OnInit {
             }, (error) => {
                 this.onGetDataError(error);
             });
-            this.invoiceLink = 'https://www.ets.org/Media/Tests/TOEFL/pdf/SampleQuestions.pdf';
     }
 
     public constructor(private _pageRoute: PageRoute,
@@ -58,6 +61,7 @@ export class PolicyDetailsComponent implements OnInit {
         this.barItemTitles = ["Personal Details","Ins Company Details","Policy Details","Amount Details","Documents","Renewal Details"];
         this.selectedIndex = 0;
         this.visibility = "Personal Details";
+        this.policyType = "Fire";
         for (var i of this.barItemTitles) {
             const item = new SegmentedBarItem();
             item.title = i;
@@ -95,8 +99,10 @@ export class PolicyDetailsComponent implements OnInit {
     }
 
     private onGetDataSuccess(res) {
+        this.activityIndicator = true;
         this.policyInfo = res;
-        console.log("results are "+this.policyInfo[0]);
+        this.policyType = this.policyInfo[0].department;
+        console.log("results are "+this.policyInfo[0].clientName);
     }
 
     private onGetDataError(error: Response | any) {
@@ -123,11 +129,11 @@ export class PolicyDetailsComponent implements OnInit {
 
     public onItemTap(args) {
         console.log("Item Tapped at cell index: " + args.index);
-        this._routerExtensions.navigate(["/search/viewDocuments", "testting"],
+        this._routerExtensions.navigate(["/search/viewDocuments", this.dataItems[args.index].id],
             {
                 animated: true,
                 transition: {
-                    name: "slideTop",
+                    name: "slide",
                     duration: 200,
                     curve: "ease"
                 }

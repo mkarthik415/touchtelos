@@ -30,10 +30,14 @@ it shouldn't have any other siblings other than the <ActionBar> component.
             <SegmentedBar [items]="items" (selectedIndexChange)="onSelectedIndexChange($event)" selectedIndex="0" class="sgstyle fa m-5"></SegmentedBar>
         </ScrollView>
          <scroll-view>
+                <GridLayout visibility="{{ activityIndicator ? 'visible' : 'collapsed' }}" backgroundColor="white">
+                        <ActivityIndicator row="1" [busy]="activityIndicator" width="100" height="100" class="activity-indicator"></ActivityIndicator>
+                    </GridLayout>
+
             <GridLayout [ngSwitch]="visibility">
                 <GridLayout *ngSwitchCase="'Personal Details'" rows="*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
                     <Label text="Client Name:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                    <Label [text]="policyInfo[0].clientName" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></Label>
+                    <TextField [text]="policyInfo[0].clientName" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></TextField>
 
                     <Label text="Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
                     <Label [text]="policyInfo[0].company" row="1" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></Label>
@@ -158,10 +162,24 @@ it shouldn't have any other siblings other than the <ActionBar> component.
 
 
                 <GridLayout class="page" *ngSwitchCase="'Policy Details'">
-
-                    <!-- >> listview-create-html -->
-                    <PDFView [src]="invoiceLink"></PDFView>
-                    <!-- << listview-create-html -->
+                
+                    <GridLayout row="1" [ngSwitch]="policyType">
+                        <GridLayout *ngSwitchCase="'Fire'" backgroundColor="#8C489F" class="p-15 m-t-15" height="280" borderRadius="2"></GridLayout>
+                        <GridLayout *ngSwitchCase="'Motor'" backgroundColor="#0077AF" class="p-15 m-t-15" height="280" borderRadius="2"></GridLayout>
+                        <GridLayout *ngSwitchCase="'Marine'" backgroundColor="#FFFF66" class="p-15 m-t-15" height="280" borderRadius="2"></GridLayout>
+                        <GridLayout *ngSwitchCase="'Miscellaneous'" rows="*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
+                            <Label text="Type of Policy:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
+                            <Label [text]="policyInfo[0].miscTypeOfPolicy" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></Label>
+                
+                            <Label text="ID Card" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
+                            <Label [text]="policyInfo[0].miscIdCard" row="1" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></Label>
+                
+                            <Label text="Dispatch Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
+                            <Label [text]="policyInfo[0].miscDispatchDate" row="2" col="1" class="text-primary textweight m-r-20" textwrap="true"></Label>
+                
+                        </GridLayout>
+                        <GridLayout *ngSwitchCase="'Engineering'" backgroundColor="#FFFF66" class="p-15 m-t-15" height="280" borderRadius="2"></GridLayout>
+                    </GridLayout>
                 </GridLayout>
 
                 <GridLayout rows="*" *ngSwitchCase="'Documents'">
@@ -189,8 +207,4 @@ it shouldn't have any other siblings other than the <ActionBar> component.
             </GridLayout>
         </scroll-view>
     </StackLayout>
-
-
-
-
 </RadSideDrawer>
