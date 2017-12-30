@@ -60,8 +60,6 @@ export class PolicyDetailsComponent implements OnInit {
         this.items = [];
         this.barItemTitles = ["Personal Details","Ins Company Details","Policy Details","Amount Details","Documents","Renewal Details"];
         this.selectedIndex = 0;
-        this.visibility = "Personal Details";
-        this.policyType = "Fire";
         for (var i of this.barItemTitles) {
             const item = new SegmentedBarItem();
             item.title = i;
@@ -100,6 +98,7 @@ export class PolicyDetailsComponent implements OnInit {
 
     private onGetDataSuccess(res) {
         this.activityIndicator = true;
+        this.visibility = "Personal Details";
         this.policyInfo = res;
         this.policyType = this.policyInfo[0].department;
         console.log("results are "+this.policyInfo[0].clientName);

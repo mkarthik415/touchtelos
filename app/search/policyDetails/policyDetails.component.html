@@ -36,128 +36,128 @@ it shouldn't have any other siblings other than the <ActionBar> component.
 
             <GridLayout [ngSwitch]="visibility">
                 <GridLayout *ngSwitchCase="'Personal Details'" rows="*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                    <Label text="Client Name:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                    <TextField [text]="policyInfo[0].clientName" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></TextField>
+                    <Label text="Client Name:" row="0" class="m-y-auto text-left text-primary t-20 m-5"></Label>
+                    <TextView [text]="policyInfo[0].clientName" row="0" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                    <Label text="Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
-                    <TextField [text]="policyInfo[0].company" row="1" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></TextField>
+                    <Label text="Company:" class="m-y-auto text-left text-primary t-20 m-10" row="1"></Label>
+                    <TextView [text]="policyInfo[0].company" row="1" col="1" textwrap="true" editable="false" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false" ></TextView>
 
-                    <Label text="Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                    <TextField [text]="policyInfo[0].phoneNumber" row="2" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Phone Number:" class="m-y-auto text-left text-primary t-20 m-10" row="2"></Label>
+                    <TextView [text]="policyInfo[0].phoneNumber" row="2" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="2nd Phone Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                    <TextField [text]="policyInfo[0].secondaryPhoneNumber" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="2nd Phone Number:" class="m-y-auto text-left text-primary t-20 m-10" row="3"></Label>
+                    <TextView [text]="policyInfo[0].secondaryPhoneNumber" row="3" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Date Of Birth:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                    <TextField [text]="policyInfo[0].dob" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Date Of Birth:" class="m-y-auto text-left text-primary t-20 m-10" row="4"></Label>
+                    <TextView [text]="policyInfo[0].dob" row="4" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                    <TextField [text]="policyInfo[0].email" row="5" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Email Address:" class="m-y-auto text-left text-primary t-20 m-10" row="5"></Label>
+                    <TextView [text]="policyInfo[0].email" row="5" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="2nd Email Address:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                    <TextField [text]="policyInfo[0].secondaryEmail" row="6" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="2nd Email Address:" class="m-y-auto text-left text-primary t-20 m-10" row="6"></Label>
+                    <TextView [text]="policyInfo[0].secondaryEmail" row="6" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Gender:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                    <TextField [text]="policyInfo[0].gender" row="7" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Gender:" class="m-y-auto text-left text-primary t-20 m-10" row="7"></Label>
+                    <TextView [text]="policyInfo[0].gender" row="7" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Industry:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                    <TextField [text]="policyInfo[0].industry" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Industry:" class="m-y-auto text-left text-primary t-20 m-10" row="8"></Label>
+                    <TextView [text]="policyInfo[0].industry" row="8" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Adress:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
-                    <TextField [text]="policyInfo[0].address" row="9" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Adress:" class="m-y-auto text-left text-primary t-20 m-10" row="9"></Label>
+                    <TextView [text]="policyInfo[0].address" row="9" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
                 </GridLayout>
 
                 <GridLayout *ngSwitchCase="'Ins Company Details'" rows="*,*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                    <Label text="Policy Number:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                    <TextField [text]="policyInfo[0].policyNumber" row="1" col="1" textwrap="true" class="text-primary textweight m-r-20"></TextField>
+                    <Label text="Policy Number:" row="1" class="m-y-auto text-left text-primary t-20 m-10"></Label>
+                    <TextView [text]="policyInfo[0].policyNumber" row="1" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                    <Label text="ENDRS Number:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                    <TextField [text]="policyInfo[0].endrsNumber" row="2" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></TextField>
+                    <Label text="ENDRS Number:" class="m-y-auto text-left text-primary t-20 m-10" row="2"></Label>
+                    <TextView [text]="policyInfo[0].endrsNumber" row="2" col="1" textwrap="true" editable="false" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                    <Label text="Policy Start Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                    <TextField [text]="policyInfo[0].policyStartdate" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Policy Start Date:" class="m-y-auto text-left text-primary t-20 m-10" row="3"></Label>
+                    <TextView [text]="policyInfo[0].policyStartdate" row="3" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Policy End Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                    <TextField [text]="policyInfo[0].policyEndDate" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Policy End Date:" class="m-y-auto text-left text-primary t-20 m-10" row="4"></Label>
+                    <TextView [text]="policyInfo[0].policyEndDate" row="4" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Office Code:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                    <TextField [text]="policyInfo[0].officeCode" row="5" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Office Code:" class="m-y-auto text-left text-primary t-20 m-10" row="5"></Label>
+                    <TextView [text]="policyInfo[0].officeCode" row="5" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Ins Company Name:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                    <TextField [text]="policyInfo[0].insCompanyName" row="6" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Ins Company Name:" class="m-y-auto text-left text-primary t-20 m-10" row="6"></Label>
+                    <TextView [text]="policyInfo[0].insCompanyName" row="6" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Source 1:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                    <TextField [text]="policyInfo[0].agent" row="7" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Source 1:" class="m-y-auto text-left text-primary t-20 m-10" row="7"></Label>
+                    <TextView [text]="policyInfo[0].agent" row="7" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Source 2:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                    <TextField [text]="policyInfo[0].source" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Source 2:" class="m-y-auto text-left text-primary t-20 m-10" row="8"></Label>
+                    <TextView [text]="policyInfo[0].source" row="8" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Policy Details:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="9"></Label>
-                    <TextField [text]="policyInfo[0].policyDetails" row="9" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Policy Details:" class="m-y-auto text-left text-primary t-20 m-10" row="9"></Label>
+                    <TextView [text]="policyInfo[0].policyDetails" row="9" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                    <Label text="Ins Branch Name:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="10"></Label>
-                    <TextField [text]="policyInfo[0].insBranchName" row="10" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Ins Branch Name:" class="m-y-auto text-left text-primary t-20 m-10" row="10"></Label>
+                    <TextView [text]="policyInfo[0].insBranchName" row="10" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
                 </GridLayout>
 
                 <GridLayout *ngSwitchCase="'Amount Details'" rows="*,*,*,*,*,*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                    <Label text="premiumAmount:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                    <TextField row="1" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                    <Label text="premiumAmount:" row="1" class="m-y-auto text-left text-primary t-20 m-10"></Label>
+                    <TextView row="1" col="1" textwrap="true" class="m-y-auto text-left text-primary font-weight-bold t-20 m-10" editable="false">
                         <FormattedString ios:fontFamily="system">
                             <Span text="&#xf156; " class="fa text-primary"></Span>
                             <Span [text]="policyInfo[0].premiumAmount"></Span>
                         </FormattedString>
-                    </TextField>
+                    </TextView>
 
-                    <Label text="Terrorism Premium Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                    <TextField row="2" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                    <Label text="Terrorism Premium Amount:" class="m-y-auto text-left text-primary t-20 m-10" row="2"></Label>
+                    <TextView row="2" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false">
                         <FormattedString ios:fontFamily="system">
                             <Span text="&#xf156; " class="fa text-primary"></Span>
                             <Span [text]="policyInfo[0].terrorismPremiumAmount"></Span>
                         </FormattedString>
-                    </TextField>
+                    </TextView>
 
-                    <Label text="serviceTax % :" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                    <TextField row="3" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                    <Label text="serviceTax % :" class="m-y-auto text-left text-primary t-20 m-10" row="3"></Label>
+                    <TextView row="3" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false">
                         <FormattedString ios:fontFamily="system">
                             <Span [text]="policyInfo[0].serviceTax"></Span>
                             <Span text="%" class="fa text-primary"></Span>
                         </FormattedString>
-                    </TextField>
+                    </TextView>
 
-                    <Label text="Service Tax Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                    <TextField row="4" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                    <Label text="Service Tax Amount:" class="m-y-auto text-left text-primary t-20 m-10" row="4"></Label>
+                    <TextView row="4" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false">
                         <FormattedString ios:fontFamily="system">
                             <Span text="&#xf156; " class="fa text-primary"></Span>
                             <Span [text]="policyInfo[0].serviceTaxAmount"></Span>
                         </FormattedString>
-                    </TextField>
+                    </TextView>
 
-                    <Label text="Total Premium Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                    <TextField row="5" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                    <Label text="Total Premium Amount:" class="m-y-auto text-left text-primary t-20 m-10" row="5"></Label>
+                    <TextView row="5" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10">
                         <FormattedString ios:fontFamily="system">
                             <Span text="&#xf156; " class="fa text-primary"></Span>
                             <Span [text]="policyInfo[0].totalPremiumAmount"></Span>
                         </FormattedString>
-                    </TextField>
+                    </TextView>
 
-                    <Label text="commision Rate:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="6"></Label>
-                    <TextField row="6" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                    <Label text="commision Rate:" class="m-y-auto text-left text-primary t-20 m-10" row="6"></Label>
+                    <TextView row="6" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false">
                         <FormattedString ios:fontFamily="system">
                             <Span [text]="policyInfo[0].commionRate"></Span>
                             <Span text="%" class="fa text-primary"></Span>
                         </FormattedString>
-                    </TextField>
+                    </TextView>
 
-                    <Label text="Commision Rate Amount:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="7"></Label>
-                    <TextField row="7" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                    <Label text="Commision Rate Amount:" class="m-y-auto text-left text-primary t-20 m-10" row="7"></Label>
+                    <TextView row="7" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20" editable="false">
                         <FormattedString ios:fontFamily="system">
                             <Span text="&#xf156; " class="fa text-primary"></Span>
                             <Span [text]="policyInfo[0].commionRateAmount"></Span>
                         </FormattedString>
-                    </TextField>
+                    </TextView>
 
-                    <Label text="Collection Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="8"></Label>
-                    <TextField text="{{policyInfo[0].collectionDate}}" row="8" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                    <Label text="Collection Date:" class="m-y-auto text-left text-primary t-20 m-10" row="8"></Label>
+                    <TextView text="{{policyInfo[0].collectionDate}}" row="8" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
                 </GridLayout>
 
 
@@ -165,67 +165,67 @@ it shouldn't have any other siblings other than the <ActionBar> component.
 
                     <GridLayout row="1" [ngSwitch]="policyType">
                         <GridLayout *ngSwitchCase="'Fire'" rows="*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
-                            <Label text="Type of Policy:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                            <TextField [text]="policyInfo[0].fireTypeOfPolicy" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></TextField>
+                            <Label text="Type of Policy:" row="0" class="m-y-auto text-left text-primary t-20 m-10"></Label>
+                            <TextView [text]="policyInfo[0].fireTypeOfPolicy" row="0" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                            <Label text="Basic Rate:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
-                            <TextField [text]="policyInfo[0].basicRate" row="1" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></TextField>
+                            <Label text="Basic Rate:" class="m-y-auto text-left text-primary t-20 m-10" row="1"></Label>
+                            <TextView [text]="policyInfo[0].basicRate" row="1" col="1" textwrap="true" editable="false" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                            <Label text="Earth Quake Premium:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                            <TextField [text]="policyInfo[0].earthQuakePremium" row="2" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="Earth Quake Premium:" class="m-y-auto text-left text-primary t-20 m-10" row="2"></Label>
+                            <TextView [text]="policyInfo[0].earthQuakePremium" row="2" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                            <Label text="Any Additional Premium:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                            <TextField [text]="policyInfo[0].anyAdditionalPremium" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="Any Additional Premium:" class="m-y-auto text-left text-primary t-20 m-10" row="3"></Label>
+                            <TextView [text]="policyInfo[0].anyAdditionalPremium" row="3" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
                         </GridLayout>
                         <GridLayout *ngSwitchCase="'Motor'"  rows="*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
                             <Label text="Vehicle No:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                            <TextField [text]="policyInfo[0].vehicleNumber" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></TextField>
+                            <TextView [text]="policyInfo[0].vehicleNumber" row="0" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                            <Label text="IDV:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
-                            <TextField [text]="policyInfo[0].iDV" row="1" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></TextField>
+                            <Label text="IDV:" class="m-y-auto text-left text-primary t-20 m-10" row="1"></Label>
+                            <TextView [text]="policyInfo[0].iDV" row="1" col="1" textwrap="true" editable="false" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                            <Label text="Vehicle Make:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                            <TextField [text]="policyInfo[0].vehicleMake" row="2" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="Vehicle Make:" class="m-y-auto text-left text-primary t-20 m-10" row="2"></Label>
+                            <TextView [text]="policyInfo[0].vehicleMake" row="2" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                            <Label text="Year Of Manufacturing:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                            <TextField [text]="policyInfo[0].vehicleManufactureYear" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="Year Of Manufacturing:" class="m-y-auto text-left text-primary t-20 m-10" row="3"></Label>
+                            <TextView [text]="policyInfo[0].vehicleManufactureYear" row="3" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
                         
-                            <Label text="NBC:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                            <TextField [text]="policyInfo[0].nBC" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="NBC:" class="m-y-auto text-left text-primary t-20 m-10" row="4"></Label>
+                            <TextView [text]="policyInfo[0].nBC" row="4" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
                         </GridLayout>
                         <GridLayout *ngSwitchCase="'Marine'" rows="*,*,*,*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
                             <Label text="Type of Policy:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                            <TextField [text]="policyInfo[0].marineTypeOfPolicy" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></TextField>
+                            <TextView [text]="policyInfo[0].marineTypeOfPolicy" row="0" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                            <Label text="Open Policy:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
-                            <TextField [text]="policyInfo[0].marineOpenPolicy" row="1" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></TextField>
+                            <Label text="Open Policy:" class="m-y-auto text-left text-primary t-20 m-10" row="1"></Label>
+                            <TextView [text]="policyInfo[0].marineOpenPolicy" row="1" col="1" textwrap="true" editable="false" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                            <Label text="Open Cover:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                            <TextField [text]="policyInfo[0].marineOpenCover" row="2" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="Open Cover:" class="m-y-auto text-left text-primary t-20 m-10" row="2"></Label>
+                            <TextView [text]="policyInfo[0].marineOpenCover" row="2" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
-                            <Label text="YOther Policies:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="3"></Label>
-                            <TextField [text]="policyInfo[0].marineOtherPolicies" row="3" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="YOther Policies:" class="m-y-auto text-left text-primary t-20 m-10" row="3"></Label>
+                            <TextView [text]="policyInfo[0].marineOtherPolicies" row="3" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
                         
-                            <Label text="Voyage From:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="4"></Label>
-                            <TextField [text]="policyInfo[0].marineVoyageFrom" row="4" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="Voyage From:" class="m-y-auto text-left text-primary t-20 m-10" row="4"></Label>
+                            <TextView [text]="policyInfo[0].marineVoyageFrom" row="4" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
                         
-                            <Label text="Voyage To:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="5"></Label>
-                            <TextField [text]="policyInfo[0].marineVoyageTo" row="5" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="Voyage To:" class="m-y-auto text-left text-primary t-20 m-10" row="5"></Label>
+                            <TextView [text]="policyInfo[0].marineVoyageTo" row="5" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
                         </GridLayout>
                         <GridLayout *ngSwitchCase="'Miscellaneous'" rows="*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
                             <Label text="Type of Policy:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                            <TextField [text]="policyInfo[0].miscTypeOfPolicy" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></TextField>
+                            <TextView [text]="policyInfo[0].miscTypeOfPolicy" row="0" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                            <Label text="ID Card:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="1"></Label>
-                            <TextField [text]="policyInfo[0].miscIdCard" row="1" col="1" textwrap="true" editable="false" class="text-primary textweight m-r-20"></TextField>
+                            <Label text="ID Card:" class="m-y-auto text-left text-primary t-20 m-10" row="1"></Label>
+                            <TextView [text]="policyInfo[0].miscIdCard" row="1" col="1" textwrap="true" editable="false" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
 
-                            <Label text="Dispatch Date:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                            <TextField [text]="policyInfo[0].miscDispatchDate" row="2" col="1" class="text-primary textweight m-r-20" textwrap="true"></TextField>
+                            <Label text="Dispatch Date:" class="m-y-auto text-left text-primary t-20 m-10" row="2"></Label>
+                            <TextView [text]="policyInfo[0].miscDispatchDate" row="2" col="1" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true" editable="false"></TextView>
 
                         </GridLayout>
                         <GridLayout *ngSwitchCase="'Engineering'" rows="*" columns="auto,*" backgroundColor="#FFFFFF">
                             <Label text="Sum Insured:" row="0" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                            <TextField [text]="policyInfo[0].sumInsured" row="0" col="1" textwrap="true" class="text-primary textweight m-r-20"></TextField>
+                            <TextView [text]="policyInfo[0].sumInsured" row="0" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false"></TextView>
                         </GridLayout>
                     </GridLayout>
                 </GridLayout>
@@ -242,15 +242,15 @@ it shouldn't have any other siblings other than the <ActionBar> component.
 
                 <GridLayout *ngSwitchCase="'Renewal Details'" rows="*,*,*" columns="auto,*" backgroundColor="#FFFFFF">
                     <Label text="Renewal Amount:" row="1" class="p-l-15 p-b-10 m-r-20 text-primary"></Label>
-                    <TextField row="1" col="1" textwrap="true" class="text-primary textweight m-r-20">
+                    <TextView row="1" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" editable="false">
                         <FormattedString ios:fontFamily="system">
                             <Span text="&#xf156; " class="fa text-primary"></Span>
                             <Span [text]="policyInfo[0].renewalAmount"></Span>
                         </FormattedString>
-                    </TextField>
+                    </TextView>
 
-                    <Label text="Renewal Company:" class="p-l-15 p-y-15 p-b-10 m-r-20  text-primary" row="2"></Label>
-                    <TextField row="2" col="1" textwrap="true" class="text-primary textweight m-r-20" [text]="policyInfo[0].renewalCompany"></TextField>
+                    <Label text="Renewal Company:" class="m-y-auto text-left text-primary t-20 m-10" row="2"></Label>
+                    <TextView row="2" col="1" textwrap="true" class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" [text]="policyInfo[0].renewalCompany" editable="false"></TextView>
                 </GridLayout>
             </GridLayout>
         </scroll-view>
