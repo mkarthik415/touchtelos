@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-
+import { UserInfo } from "../userInfo";
 /* ***********************************************************
 * Keep data that is displayed in your app drawer in the MyDrawer component class.
 * Add new data objects that you want to display in the drawer here in the form of properties.
@@ -17,11 +17,16 @@ export class MyDrawerComponent implements OnInit {
     * You can check how it is used in the "isPageSelected" function below.
     *************************************************************/
     @Input() selectedPage: string;
+    private message:any;
 
     ngOnInit(): void {
         /* ***********************************************************
         * Use the MyDrawerComponent "onInit" event handler to initialize the properties data values.
         *************************************************************/
+        this.myinfo.currentMessage.subscribe(message => console.log(message));
+    }
+
+    public constructor(private myinfo:UserInfo){
     }
 
     /* ***********************************************************
