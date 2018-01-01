@@ -18,12 +18,14 @@ export class MyDrawerComponent implements OnInit {
     *************************************************************/
     @Input() selectedPage: string;
     private message:any;
+    private profilePic: string;
 
     ngOnInit(): void {
         /* ***********************************************************
         * Use the MyDrawerComponent "onInit" event handler to initialize the properties data values.
         *************************************************************/
-        this.myinfo.currentMessage.subscribe(message => console.log(message));
+        this.myinfo.currentMessage.subscribe(message => this.message = message);
+        this.profilePic = "res://shared/"+this.message;
     }
 
     public constructor(private myinfo:UserInfo){
