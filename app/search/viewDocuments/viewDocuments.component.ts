@@ -4,6 +4,7 @@ import {RadSideDrawerComponent} from "nativescript-pro-ui/sidedrawer/angular";
 import {PageRoute, RouterExtensions} from "nativescript-angular";
 import {MyHttpGetService} from "../../shared/MyHttpGetService";
 import {ActivatedRoute} from "@angular/router";
+import * as SocialShare from "nativescript-social-share";
 
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
@@ -67,5 +68,10 @@ export class ViewDocumentsComponent implements OnInit {
         const body = error.json() || "";
         const err = body.error || JSON.stringify(body);
         console.log("onGetDataError: " + err);
+    }
+
+    public shareImage() {
+        SocialShare.shareUrl(this.invoiceLink , "Home of NativeScript", "How would you like to share this url?");
+
     }
 }

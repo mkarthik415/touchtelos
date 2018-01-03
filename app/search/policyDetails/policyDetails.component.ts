@@ -25,11 +25,10 @@ export class PolicyDetailsComponent implements OnInit {
     public mySerialNumber: string;
     public policyInfo: Array<any>;
     public items: Array<SegmentedBarItem>;
-    public selectedIndex = 0;
+    public selectedIndex;
     public visibility: string;
     public barItemTitles: Array<string>;
     public dataItems: Array<any>;
-    public invoiceLink: string;
     public activityIndicator: boolean;
     public policyType: string;
 
@@ -59,7 +58,7 @@ export class PolicyDetailsComponent implements OnInit {
                        private _routerExtensions: RouterExtensions) {
         this.items = [];
         this.barItemTitles = ["Personal Details","Ins Company Details","Policy Details","Amount Details","Documents","Renewal Details"];
-        this.selectedIndex = 0;
+        // this.selectedIndex = 0;
         for (var i of this.barItemTitles) {
             const item = new SegmentedBarItem();
             item.title = i;
@@ -101,6 +100,7 @@ export class PolicyDetailsComponent implements OnInit {
         this.visibility = "Personal Details";
         this.policyInfo = res;
         this.policyType = this.policyInfo[0].department;
+        this.selectedIndex = 0;
         console.log("results are "+this.policyInfo[0].clientName);
     }
 

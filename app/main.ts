@@ -8,5 +8,6 @@ import {registerElement} from "nativescript-angular/element-registry";
 registerElement("CardView", () => require("nativescript-cardview").CardView); */
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 registerElement('PDFView', () => PDFView);
+registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
 
 platformNativeScriptDynamic().bootstrapModule(AppModule);
