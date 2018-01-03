@@ -10,6 +10,7 @@
             ios.position="left">
         </ActionItem>-->
     <Label class="action-bar-title" text="Document"></Label>
+    <ActionItem ios.systemIcon="9" android.systemIcon="ic_menu_search" ios.position="right" (tap)="shareImage()"></ActionItem>
 </ActionBar>
 
 <RadSideDrawer #drawer showOverNavigation="true" [drawerTransition]="sideDrawerTransition">
