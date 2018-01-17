@@ -50,14 +50,14 @@ it shouldn't have any other siblings other than the <ActionBar> component.
                               editable="false"></TextView>
 
                     <Label text="Phone Number:" class="m-y-auto text-left text-primary t-20 m-10" row="2"></Label>
-                    <TextView [text]="policyInfo[0].phoneNumber" row="2" col="1"
-                              class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true"
-                              editable="false"></TextView>
+                    <label [text]="policyInfo[0].phoneNumber" row="2" col="1"
+                              class="m-y-auto text-left text-primary font-weight-bold t-20 m-10" textwrap="true"
+                              editable="false" height="auto"></label>
 
                     <Label text="2nd Phone Number:" class="m-y-auto text-left text-primary t-20 m-10" row="3"></Label>
-                    <TextView [text]="policyInfo[0].secondaryPhoneNumber" row="3" col="1"
-                              class="m-y-auto text-center text-primary font-weight-bold t-20 m-10" textwrap="true"
-                              editable="false"></TextView>
+                    <label [text]="policyInfo[0].secondaryPhoneNumber" row="3" col="1"
+                              class="m-y-auto text-left text-primary font-weight-bold t-20 m-10" textwrap="true"
+                              editable="false" height="auto"></label>
 
                     <Label text="Date Of Birth:" class="m-y-auto text-left text-primary t-20 m-10" row="4"></Label>
                     <TextView [text]="policyInfo[0].dob" row="4" col="1"

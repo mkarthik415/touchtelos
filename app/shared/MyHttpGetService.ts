@@ -6,16 +6,18 @@ import "rxjs/add/operator/do";
 
 @Injectable()
 export class MyHttpGetService {
-      private serverUrl = "https://connect2telos.com/telosws/";
-/*     private serverUrl = "http://localhost:8080/"; */
+      private serverUrl = "https://connect2telos.com/telosws-0.0.1/";
 
     constructor(private http: Http) { }
 
     getData(endpoint) {
         let headers = this.createRequestHeader();
         console.log("webservice endpoint"+this.serverUrl+endpoint);
+        console.log("result from webservices are "+(this.http.get(this.serverUrl+endpoint)
+            .map(res => res.text().length >0 ? res.json() : res.text())));
         return this.http.get(this.serverUrl+endpoint)
             .map(res => res.text().length >0 ? res.json() : res.text());
+
     }
 
     getResponseInfo() {

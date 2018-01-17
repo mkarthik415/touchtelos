@@ -39,7 +39,7 @@
         </GridLayout>
 
         <GridLayout class="page page-content" >
-            <RadListView [items]="myItems" class="list-group" (itemTap)="onPolicytemTap($event)">
+            <RadListView [items]="myItems" class="list-group" (itemTap)="onPolicytemTap($event)" loadOnDemandMode="Manual" (loadMoreDataRequested)="onLoadMoreItemsRequested($event)">
                 <!--
                 RadListView is a UI component part of the Progress NativeScript UI set of components.
                 Learn more about the RadListView UI component and how it can be customized in this documentation article:
@@ -49,47 +49,50 @@
                 <ng-template tkListItemTemplate let-item="item">
                     <StackLayout class="list-group-item">
                         <GridLayout rows="*, *, *" columns="*, *" class="list-group-item-content">
-                            <Label [text]="item.clientName" class="text-primary font-weight-bold"></Label>
+                            <Label [text]="item[1]" class="text-primary font-weight-bold"></Label>
                             <Label col="1" horizontalAlignment="right" class="list-group-item-text m-r-5">
                                 <FormattedString ios:fontFamily="system">
                                     <Span text="&#xf156;   " class="fa text-primary"></Span>
-                                    <Span [text]="item.totalPremiumAmount"></Span>
+                                    <Span [text]="item[2]"></Span>
                                 </FormattedString>
                             </Label>
 
                             <StackLayout row="1" class="hr-light m-t-5 m-b-5" colSpan="2"></StackLayout>
  
-                            <Image row="2" [src]="'res://search/Miscellaneous'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item.department == 'Miscellaneous' ? 'visible' : 'hidden' }}"></Image>
-                            <Image row="2" [src]="'res://search/Engineering'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item.department == 'Engineering' ? 'visible' : 'hidden' }}"></Image>
-                            <Image row="2" [src]="'res://search/Marine'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item.department == 'Marine' ? 'visible' : 'hidden' }}"></Image>
-                            <Image row="2" [src]="'res://search/Motor'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item.department == 'Motor' ? 'visible' : 'hidden' }}"></Image>
-                            <Image row="2" [src]="'res://search/fire'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item.department == 'Fire' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2" [src]="'res://search/Miscellaneous'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item[6] == 'Miscellaneous' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2" [src]="'res://search/Engineering'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item[6]== 'Engineering' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2" [src]="'res://search/Marine'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item[6] == 'Marine' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2" [src]="'res://search/Motor'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item[6] == 'Motor' ? 'visible' : 'hidden' }}"></Image>
+                            <Image row="2" [src]="'res://search/fire'" stretch="aspectFill" height="120" class="m-r-20" decodeHeight="120" visibility="{{ item[6] == 'Fire' ? 'visible' : 'hidden' }}"></Image>
                             <StackLayout row="2" col="1" verticalAlignment="center" class="list-group-item-text">
                                 <Label class="p-b-10">
                                     <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
                                     <FormattedString ios:fontFamily="system">
                                         <Span text="&#xf27e;   " class="fa text-primary"></Span>
-                                        <Span [text]="item.agent"></Span>
+                                        <Span [text]="item[4]"></Span>
                                     </FormattedString>
                                 </Label>
                                 <Label class="p-b-10">
                                     <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
                                     <FormattedString ios:fontFamily="system">
                                         <Span text="&#xf252;   " class="fa text-primary"></Span>
-                                        <Span [text]="item.policyEndDate"></Span>
+                                        <Span [text]="item[3]"></Span>
                                     </FormattedString>
                                 </Label>
                                 <Label>
                                     <!-- set fontFamily="system" to workaround "Service exited due to Segmentation fault: 11" error -->
                                     <FormattedString ios:fontFamily="system">
-                                        <Span text="{{ item.industry == 'Individual' ? '&#xf2bd;   ': '&#xf1ad;   ' }}" class="fa text-primary"></Span>
-                                        <Span [text]="item.industry"></Span>
+                                        <Span text="{{ item[5]== 'Individual' ? '&#xf2bd;   ': '&#xf1ad;   ' }}" class="fa text-primary"></Span>
+                                        <Span [text]="item[5]"></Span>
                                     </FormattedString>
                                 </Label>
                             </StackLayout>
                         </GridLayout>
                     </StackLayout>
                 </ng-template>
+                <GridLayout *tkListLoadOnDemandTemplate visibility="{{ labelVisibility ? 'collapsed' : 'visible' }}" class="loadOnDemandItemGridLayout">
+                    <Label [text]="loadMore" horizontalAlignment="center" verticalAlignment="center"></Label>
+                </GridLayout>
             </RadListView>
         </GridLayout>
     </StackLayout>

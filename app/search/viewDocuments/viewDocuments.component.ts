@@ -71,7 +71,7 @@ export class ViewDocumentsComponent implements OnInit {
     }
 
     public shareImage() {
-        SocialShare.shareUrl(this.invoiceLink , "Home of NativeScript", "How would you like to share this url?");
+        SocialShare.shareUrl(this.invoiceLink , "Use link to download the document.", "Use link to download the document.");
 
     }
 }
