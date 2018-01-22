@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit, ViewChild, ChangeDetectorRef} from "@angular/core";
 import {DrawerTransitionBase, SlideInOnTopTransition} from "nativescript-pro-ui/sidedrawer";
 import {RadSideDrawerComponent} from "nativescript-pro-ui/sidedrawer/angular";
 
@@ -8,8 +8,9 @@ import {SegmentedBar, SegmentedBarItem} from "ui/segmented-bar";
 import {SearchBar} from "tns-core-modules/ui/search-bar";
 import {RouterExtensions} from "nativescript-angular";
 import "rxjs/add/operator/switchMap";
-import { ObservableArray } from "tns-core-modules/data/observable-array/observable-array";
-import {ListViewEventData, RadListView} from "nativescript-pro-ui/listview";
+import {ListViewEventData, RadListView, ListViewLoadOnDemandMode} from "nativescript-pro-ui/listview";
+import { UserInfo } from '../shared/userInfo';
+import * as app from 'application';
 
 @Component({
     selector: "Search",
@@ -46,7 +47,8 @@ export class SearchComponent implements OnInit {
     private industry: string;
     private searchBar: any;
     private index: number;
-    private loadMore: string;
+    public loadMore: string;
+    public searchString: string;
 
     /* ***********************************************************
     * Use the sideDrawerTransition property to change the open/close animation of the drawer.
@@ -55,11 +57,22 @@ export class SearchComponent implements OnInit {
         this._sideDrawerTransition = new SlideInOnTopTransition();
         this.activityIndicator = false;
         this.response = false;
+
+        app.on(app.orientationChangedEvent, (args: app.OrientationChangedEventData) => {
+
+            if (args.newValue === 'landscape') {
+                this.myinfo.currentSearchResults.subscribe(results => this.myItems = results);
+                this.serviceCall();
+            } else {
+                this.serviceCall();
+            }
+        });
     }
 
 
     public constructor(private myService: MyHttpGetService,
-                       private _routerExtensions: RouterExtensions) {
+                       private _routerExtensions: RouterExtensions,
+                       private myinfo: UserInfo) {
         this.resultInfo = " Select search criteria .....";
         this.labelVisibility = true;
         this.loadModelVisibility = true;
@@ -71,6 +84,7 @@ export class SearchComponent implements OnInit {
             item.title = i;
             this.myItemss.push(item);
         }
+
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
@@ -88,6 +102,7 @@ export class SearchComponent implements OnInit {
     private onGetDataSuccess(res) {
         this.index = 0;
         this.myItems = [];
+        this.totalResults = [];
         this.totalResults = res.records.reverse();
         for (var i = 0, len =  (this.totalResults.length >= 10 ? 10 : this.totalResults.length); i <= len; i++) {
             this.myItems.push(this.totalResults[i]);
@@ -127,7 +142,14 @@ export class SearchComponent implements OnInit {
     extractData(args) {
         this.activityIndicator = true;
         this.searchBar = <SearchBar>args.object;
-        this.myService.getData((this.searchEndPt + "?" + webServices[this.searchEndPt] + "=" + this.searchBar.text))
+        this.searchString = this.searchBar.text;
+        this.myinfo.changeSearchString(this.searchString);
+        this.myinfo.changeeEndPt(this.searchEndPt);
+        this.serviceCall();
+    }
+
+    private serviceCall() {
+        this.myService.getData((this.searchEndPt + "?" + webServices[this.searchEndPt] + "=" + this.searchString))
             .subscribe((result) => {
                 this.activityIndicator = false;
                 if (result) {
@@ -177,15 +199,14 @@ export class SearchComponent implements OnInit {
 
     public onLoadMoreItemsRequested(args: ListViewEventData) {
         let listView: RadListView = args.object;
-        if(this.totalResults.length > 10){
+        if(this.totalResults.length > 10 && this.totalResults.length!= this.myItems.length){
 
-            for (var i = this.index+1, len = (this.totalResults.length >= this.index + 10 ? this.index + 10 : this.totalResults.length); i <= len; i++) {
-                this.myItems = [];
+            for (var i = this.index+1, len = (this.totalResults.length >= this.index + 10 ? this.index + 10 : this.totalResults.length-1); i <= len; i++) {
                 this.myItems.push(this.totalResults[i]);
                 if(this.totalResults.length==i)
                 {
-                    listView.notifyLoadOnDemandFinished();
-                    this.loadModelVisibility = false;
+                    listView.loadOnDemandMode = ListViewLoadOnDemandMode[ListViewLoadOnDemandMode.None];
+                    break;
                 }
             }
             this.index = this.index + 10;
@@ -193,5 +214,6 @@ export class SearchComponent implements OnInit {
         else {
             this.loadModelVisibility = false;
         }
+        args.returnValue = true;
     }
 }
