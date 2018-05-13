@@ -11,6 +11,14 @@ import "rxjs/add/operator/switchMap";
 import {ListViewEventData, RadListView, ListViewLoadOnDemandMode} from "nativescript-pro-ui/listview";
 import { UserInfo } from '../shared/userInfo';
 import * as app from 'application';
+import {ObservableArray} from "tns-core-modules/data/observable-array";
+import { SearchItem } from "../../app/search/SearchItem";
+import { map } from 'rxjs/operators';
+import { Observable } from "rxjs/Observable";
+import { setInterval, setTimeout, clearInterval } from "timer";
+import * as Timer from "tns-core-modules/timer";
+
+
 
 @Component({
     selector: "Search",
@@ -20,6 +28,7 @@ import * as app from 'application';
     providers: [MyHttpGetService]
 })
 export class SearchComponent implements OnInit {
+    searchResponse: any;
     /* ***********************************************************
     * Use the @ViewChild decorator to get a reference to the drawer component.
     * It is used in the "onDrawerButtonTap" function below to manipulate the drawer.
@@ -31,8 +40,9 @@ export class SearchComponent implements OnInit {
     public userAgent: string;
     public origin: string;
     public url: string;
+    public testvalue: Observable<any>;
     public myItems: Array<any>;
-    public totalResults:Array<any>;
+    public totalResults: Array<any>;
     public searchEndPt: any;
     public searchHint: string;
     public searchKeyboardType: any;
@@ -49,6 +59,9 @@ export class SearchComponent implements OnInit {
     private index: number;
     public loadMore: string;
     public searchString: string;
+    private _dataItems: ObservableArray<any>;
+    private searchResults: SearchItem[];
+    private intialNumber: number;
 
     /* ***********************************************************
     * Use the sideDrawerTransition property to change the open/close animation of the drawer.
@@ -59,9 +72,10 @@ export class SearchComponent implements OnInit {
         this.response = false;
 
         app.on(app.orientationChangedEvent, (args: app.OrientationChangedEventData) => {
-
+            this.myinfo.currentSearchString.subscribe(results => this.searchString = results);
+            this.myinfo.currentEndPt.subscribe(results => this.searchEndPt = results);
             if (args.newValue === 'landscape') {
-                this.myinfo.currentSearchResults.subscribe(results => this.myItems = results);
+
                 this.serviceCall();
             } else {
                 this.serviceCall();
@@ -101,12 +115,14 @@ export class SearchComponent implements OnInit {
 
     private onGetDataSuccess(res) {
         this.index = 0;
-        this.myItems = [];
-        this.totalResults = [];
-        this.totalResults = res.records.reverse();
+        this.intialNumber = 0;
+        this.myItems = new Array<any>();
+        this.totalResults = new Array<any>();
+        this.totalResults = res.reverse();
         for (var i = 0, len =  (this.totalResults.length >= 10 ? 10 : this.totalResults.length); i <= len; i++) {
             this.myItems.push(this.totalResults[i]);
             this.index = i;
+            this.intialNumber++;
           }
         console.log("the size of the array is: " + this.myItems.length);
         this.activityIndicator = false;
@@ -119,13 +135,9 @@ export class SearchComponent implements OnInit {
             this.loadModelVisibility = true;
             this.resultInfo = " No Data found.";
         }
-        this.host = res.headers.Host;
-        this.userAgent = res.headers["User-Agent"];
-        this.origin = res.origin;
-        this.url = res.url;
-        for (let myItem in this.myItems) {
-            console.log(myItem);
-        }
+/*         for (let myItem in this.myItems) {
+            console.log(myItem.INSURED_NAME);
+        } */
 
     }
 
@@ -149,11 +161,19 @@ export class SearchComponent implements OnInit {
     }
 
     private serviceCall() {
-        this.myService.getData((this.searchEndPt + "?" + webServices[this.searchEndPt] + "=" + this.searchString))
-            .subscribe((result) => {
+    
+        this.searchResponse = new Array();
+        this.myService.getData((this.searchEndPt + "?" + webServices[this.searchEndPt] + "=" + this.searchString)).subscribe(
+            // the first argument is a function which runs on success
+            data => { console.log('done loading foods');
+            data.records.map(item => { 
+                this.searchResponse.push(new SearchItem( 
+                    item[0],item[1],item[2],item[3],item[4],item[5],item[6]
+                ));
+              });
                 this.activityIndicator = false;
-                if (result) {
-                    this.onGetDataSuccess(result);
+                if (data) {
+                    this.onGetDataSuccess(this.searchResponse);
                 }
                 else {
                     this.labelVisibility = true;
@@ -161,10 +181,13 @@ export class SearchComponent implements OnInit {
                     this.resultInfo = " No Data found.";
                     this.myItems = null;
                 }
-            }, (error) => {
-                this.onGetDataError(error);
-            });
-    }
+            },
+            // the second argument is a function which runs on error
+            err => console.error(err),
+            // the third argument is a function which runs on completion
+            () => console.log('done loading foods'+this.searchResults[0].AGENTNAME)
+          );
+ }
 
     public onSelectedIndexChange(args) {
         let segmetedBar = <SegmentedBar>args.object;
@@ -198,22 +221,24 @@ export class SearchComponent implements OnInit {
 
 
     public onLoadMoreItemsRequested(args: ListViewEventData) {
-        let listView: RadListView = args.object;
-        if(this.totalResults.length > 10 && this.totalResults.length!= this.myItems.length){
+        var that = new WeakRef(this);
 
-            for (var i = this.index+1, len = (this.totalResults.length >= this.index + 10 ? this.index + 10 : this.totalResults.length-1); i <= len; i++) {
-                this.myItems.push(this.totalResults[i]);
-                if(this.totalResults.length==i)
-                {
+        Timer.setTimeout(function () {
+            var listView: RadListView = args.object;
+            var initialNumberOfItems = that.get().intialNumber;
+            
+            for (var i = initialNumberOfItems; i < initialNumberOfItems + 4; i++) {
+                if (i > that.get().totalResults.length - 1) {
                     listView.loadOnDemandMode = ListViewLoadOnDemandMode[ListViewLoadOnDemandMode.None];
                     break;
                 }
+                    
+
+                that.get().myItems.push(that.get().totalResults[i]);
+                that.get().intialNumber++;
             }
-            this.index = this.index + 10;
-        }
-        else {
-            this.loadModelVisibility = false;
-        }
+            listView.notifyLoadOnDemandFinished();
+        },1000);
         args.returnValue = true;
     }
 }

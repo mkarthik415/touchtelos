@@ -6,6 +6,7 @@ import "rxjs/add/operator/switchMap";
 import {MyHttpGetService} from "../../shared/MyHttpGetService";
 import {SegmentedBar, SegmentedBarItem} from "tns-core-modules/ui/segmented-bar";
 import { SetupItemViewArgs } from "nativescript-angular/directives";
+import { PolicyInfo } from './policyInfo';
 
 @Component({
     selector: "policyDetails",
@@ -31,6 +32,8 @@ export class PolicyDetailsComponent implements OnInit {
     public dataItems: Array<any>;
     public activityIndicator: boolean;
     public policyType: string;
+    public searchResponse: Array<any>;
+    public serialArray: Array<any>;
 
     /* ***********************************************************
     * Use the sideDrawerTransition property to change the open/close animation of the drawer.
@@ -45,9 +48,13 @@ export class PolicyDetailsComponent implements OnInit {
             });
             this.activityIndicator = false;
 
-        this.myService.getData("bySerialNumber?serialNumber"+ "=" + this.mySerialNumber)
+        this.searchResponse = new Array();
+        this.myService.getData("bySerialNumber?serialNumber" + "=" + this.mySerialNumber)
             .subscribe((result) => {
-                this.onGetDataSuccess(result);
+                result.records.map(item => { 
+                    this.searchResponse.push(item);
+                  });
+                  this.onGetDataSuccess(this.searchResponse);
             }, (error) => {
                 this.onGetDataError(error);
             });
@@ -69,9 +76,9 @@ export class PolicyDetailsComponent implements OnInit {
 
     getDocumentsInfo()
     {
-        this.myService.getData("documentsByClient?id"+ "=" + this.mySerialNumber)
+        this.myService.getData("documentsByClientId?serialNumber"+ "=" + this.mySerialNumber)
         .subscribe((result) => {
-            this.onGetDocumentsSuccess(result);
+            this.onGetDocumentsSuccess(result.records);
         }, (error) => {
             this.onGetDataError(error);
         });
@@ -79,8 +86,12 @@ export class PolicyDetailsComponent implements OnInit {
 
     onGetDocumentsSuccess(documents)
     {
-        this.dataItems = documents;
-        console.log("results are "+this.dataItems[0]);
+        this.dataItems = new Array();
+        for(let i of documents)
+        {
+            this.dataItems.push(i);
+        
+        }
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
@@ -98,10 +109,9 @@ export class PolicyDetailsComponent implements OnInit {
     private onGetDataSuccess(res) {
         this.activityIndicator = true;
         this.visibility = "Personal Details";
-        this.policyInfo = res;
-        this.policyType = this.policyInfo[0].department;
+        this.policyInfo = res[0];
+        this.policyType = this.policyInfo[13];
         this.selectedIndex = 0;
-        console.log("results are "+this.policyInfo[0].clientName);
     }
 
     private onGetDataError(error: Response | any) {
@@ -128,7 +138,8 @@ export class PolicyDetailsComponent implements OnInit {
 
     public onItemTap(args) {
         console.log("Item Tapped at cell index: " + args.index);
-        this._routerExtensions.navigate(["/search/viewDocuments", this.dataItems[args.index].id],
+        this.serialArray = this.dataItems[0];
+        this._routerExtensions.navigate(["/search/viewDocuments", this.serialArray[0]],
             {
                 animated: true,
                 transition: {

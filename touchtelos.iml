@@ -9,6 +9,14 @@
       <excludeFolder url="file://$MODULE_DIR$/node_modules 2/nativescript-snackbar/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/node_modules 2/nativescript-theme-core/scss/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/node_modules 2/tns-core-modules-widgets/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 3/nativescript-floatingactionbutton/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 3/nativescript-fontawesome/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 3/nativescript-pdf-view/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 3/nativescript-plugin-firebase/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 3/nativescript-pro-ui/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 3/nativescript-snackbar/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 3/nativescript-social-share/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/node_modules 3/tns-core-modules-widgets/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/platforms 2/ios/build/emulator/touchtelos.app/app/tns_modules/nativescript-theme-core/scss/platforms" />
       <excludeFolder url="file://$MODULE_DIR$/platforms 2/ios/touchtelos/app/tns_modules/nativescript-theme-core/scss/platforms" />

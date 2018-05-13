@@ -40,7 +40,7 @@ export class ViewDocumentsComponent implements OnInit {
                 this.mySerialNumber = params.id;
             });
 
-        this.myService.getData("documentsById?id"+ "=" + this.mySerialNumber)
+        this.myService.getData("documentsById?documentId"+ "=" + this.mySerialNumber)
             .subscribe((result) => {
                 this.onGetDocumentsSuccess(result);
             }, (error) => {
@@ -50,7 +50,7 @@ export class ViewDocumentsComponent implements OnInit {
 
     onGetDocumentsSuccess(documents)
     {
-        this.invoiceLink = (documents[0].url).split(' ').join('%20');
+        this.invoiceLink = (documents.fileUrl).split(' ').join('%20');
     }
 
     constructor(private _pageRoute: PageRoute,

@@ -52,5 +52,6 @@
     "webpack-bundle-analyzer": "^2.9.1",
     "webpack-sources": "~1.1.0"
   },
-  "author": "Karthik Marupeddi"
+  "author": "Karthik Marupeddi",
+  "pre-push": []
 }

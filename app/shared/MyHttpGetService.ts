@@ -1,38 +1,35 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers, Response } from "@angular/http";
+import {HttpClient} from "@angular/common/http";
 
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
+import {Observable} from 'rxjs';
+import { Request } from '@angular/http';
+// import { SearchItem } from "../../app/search/SearchItem";
+
+
+interface SearchItem {
+    id: string;
+    INSURED_NAME: string;
+    TOTAL_PREMIUM: string,
+    INSURANCE_TO: string,
+    AGENTNAME: string,
+    INDUSTRY: string,
+    DEPARTMENT: string
+}
 
 @Injectable()
 export class MyHttpGetService {
       private serverUrl = "https://connect2telos.com/telosws-0.0.1/";
+    //   private serverUrl = "https://connect2telos.com/telosws/";
+      private results: Observable<SearchItem>;
+    constructor(private http: HttpClient) { }
 
-    constructor(private http: Http) { }
-
-    getData(endpoint) {
-        let headers = this.createRequestHeader();
+    getData(endpoint): Observable<any>{
         console.log("webservice endpoint"+this.serverUrl+endpoint);
-        console.log("result from webservices are "+(this.http.get(this.serverUrl+endpoint)
-            .map(res => res.text().length >0 ? res.json() : res.text())));
-        return this.http.get(this.serverUrl+endpoint)
-            .map(res => res.text().length >0 ? res.json() : res.text());
-
-    }
-
-    getResponseInfo() {
-        let headers = this.createRequestHeader();
-        return this.http.get(this.serverUrl, { headers: headers })
-            .do(res => res);
-    }
-
-    private createRequestHeader() {
-        let headers = new Headers();
-        // set headers here e.g.
-/*        headers.append("AuthKey", "my-key");
-        headers.append("AuthToken", "my-token");
-        headers.append("Content-Type", "application/json");*/
-
-        return headers;
+        {
+            console.log("Webservice response is"+this.http.get(this.serverUrl + endpoint))
+            return this.http.get(this.serverUrl + endpoint);
+        }
     }
 }
