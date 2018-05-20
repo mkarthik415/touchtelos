@@ -28,7 +28,7 @@ import * as Timer from "tns-core-modules/timer";
     providers: [MyHttpGetService]
 })
 export class SearchComponent implements OnInit {
-    searchResponse: any;
+    searchResponse: Array<any>;
     /* ***********************************************************
     * Use the @ViewChild decorator to get a reference to the drawer component.
     * It is used in the "onDrawerButtonTap" function below to manipulate the drawer.
@@ -62,6 +62,7 @@ export class SearchComponent implements OnInit {
     private _dataItems: ObservableArray<any>;
     private searchResults: SearchItem[];
     private intialNumber: number;
+    private listView: RadListView; 
 
     /* ***********************************************************
     * Use the sideDrawerTransition property to change the open/close animation of the drawer.
@@ -114,6 +115,7 @@ export class SearchComponent implements OnInit {
     }
 
     private onGetDataSuccess(res) {
+        var that = new WeakRef(this);
         this.index = 0;
         this.intialNumber = 0;
         this.myItems = new Array<any>();
@@ -135,6 +137,9 @@ export class SearchComponent implements OnInit {
             this.loadModelVisibility = true;
             this.resultInfo = " No Data found.";
         }
+        if(this.listView){
+            this.listView.loadOnDemandMode = ListViewLoadOnDemandMode[ListViewLoadOnDemandMode.Auto];  
+         }
 /*         for (let myItem in this.myItems) {
             console.log(myItem.INSURED_NAME);
         } */
@@ -164,12 +169,11 @@ export class SearchComponent implements OnInit {
     
         this.searchResponse = new Array();
         this.myService.getData((this.searchEndPt + "?" + webServices[this.searchEndPt] + "=" + this.searchString)).subscribe(
+            
             // the first argument is a function which runs on success
             data => { console.log('done loading foods');
             data.records.map(item => { 
-                this.searchResponse.push(new SearchItem( 
-                    item[0],item[1],item[2],item[3],item[4],item[5],item[6]
-                ));
+                this.searchResponse.push(item);
               });
                 this.activityIndicator = false;
                 if (data) {
@@ -202,7 +206,7 @@ export class SearchComponent implements OnInit {
 
         const tappedPolicyItem = args.view.bindingContext;
 
-        this._routerExtensions.navigate(["/search/policyDetails", tappedPolicyItem.id],
+        this._routerExtensions.navigate(["/search/policyDetails", tappedPolicyItem[0]],
             {
                 animated: true,
                 transition: {
@@ -224,12 +228,12 @@ export class SearchComponent implements OnInit {
         var that = new WeakRef(this);
 
         Timer.setTimeout(function () {
-            var listView: RadListView = args.object;
+            that.get().listView = args.object;
             var initialNumberOfItems = that.get().intialNumber;
             
             for (var i = initialNumberOfItems; i < initialNumberOfItems + 4; i++) {
                 if (i > that.get().totalResults.length - 1) {
-                    listView.loadOnDemandMode = ListViewLoadOnDemandMode[ListViewLoadOnDemandMode.None];
+                    that.get().listView.loadOnDemandMode = ListViewLoadOnDemandMode[ListViewLoadOnDemandMode.None];
                     break;
                 }
                     
@@ -237,7 +241,7 @@ export class SearchComponent implements OnInit {
                 that.get().myItems.push(that.get().totalResults[i]);
                 that.get().intialNumber++;
             }
-            listView.notifyLoadOnDemandFinished();
+            that.get().listView.notifyLoadOnDemandFinished();
         },1000);
         args.returnValue = true;
     }

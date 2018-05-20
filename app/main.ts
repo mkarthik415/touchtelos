@@ -9,5 +9,6 @@ registerElement("CardView", () => require("nativescript-cardview").CardView); */
 registerElement("Gradient", () => require("nativescript-gradient").Gradient);
 registerElement('PDFView', () => PDFView);
 registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
+registerElement("PreviousNextView", () => require("nativescript-iqkeyboardmanager").PreviousNextView);
 
 platformNativeScriptDynamic().bootstrapModule(AppModule);
